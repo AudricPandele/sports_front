@@ -10,6 +10,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Cookies from 'universal-cookie';
 
 class Login extends Component {
   constructor(){
@@ -19,6 +20,7 @@ class Login extends Component {
       email: null,
       errorMessage: null,
       redirect: false,
+      token: null
     }
   }
 
@@ -47,7 +49,16 @@ class Login extends Component {
             password : this.state.password
           })
           .then((response) => {
-            this.setState({redirect: true})
+            const cookiesTOKEN = new Cookies();
+            cookiesTOKEN.set('sport_token', response.data.token, {path: '/'});
+
+            const cookiesID = new Cookies();
+            cookiesID.set('sport_id', response.data.user.id, {path: '/'});
+
+            this.setState({
+              token: response.data.token,
+              redirect: true
+            })
           })
           .catch((error) => {
             this.setState({redirect: false})
@@ -71,7 +82,7 @@ class Login extends Component {
     if (redirect) {
 
       return (
-        <Redirect to='/home' />
+        <Redirect to='/home/' />
       );
     }
     return (
