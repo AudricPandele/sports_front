@@ -71,9 +71,7 @@ class Login extends Component {
     if (redirect) {
 
       return (
-        <Router>
-          <Redirect to='/home' />
-        </Router>
+        <Redirect to='/home' />
       );
     }
     return (
