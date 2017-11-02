@@ -34,8 +34,8 @@ class Login extends Component {
   login = () =>{
     if(this.state.email != null && this.state.password != null){
         if(this.testMail(this.state.email)){
-          axios.post('/url', {
-            email : this.state.password,
+          axios.post('http://localhost:1337/auth/signin', {
+            email : this.state.email,
             password : this.state.password
           })
           .then(function (response) {
@@ -47,10 +47,12 @@ class Login extends Component {
         }
         else{
           this.setState({errorMessage : "Email is not email"});
+          console.log("mail");
         }
     }
     else {
         this.setState({errorMessage : 'Required'});
+        console.log("required");
     }
   }
 
