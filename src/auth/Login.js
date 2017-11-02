@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 import logo from '../logo.svg';
 import '../App.css';
 import axios from 'axios'
@@ -10,7 +17,8 @@ class Login extends Component {
     this.state = {
       password: null,
       email: null,
-      errorMessage: null
+      errorMessage: null,
+      redirect: false,
     }
   }
 
@@ -38,10 +46,11 @@ class Login extends Component {
             email : this.state.email,
             password : this.state.password
           })
-          .then(function (response) {
-            console.log(response);
+          .then((response) => {
+            this.setState({redirect: true})
           })
-          .catch(function (error) {
+          .catch((error) => {
+            this.setState({redirect: false})
             console.log(error);
           });
         }
@@ -57,6 +66,16 @@ class Login extends Component {
   }
 
   render() {
+    const { redirect } = this.state;
+
+    if (redirect) {
+
+      return (
+        <Router>
+          <Redirect to='/home' />
+        </Router>
+      );
+    }
     return (
       <div className="container">
         <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
