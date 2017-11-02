@@ -6,8 +6,8 @@ class Registration extends Component {
   constructor(){
     super();
     this.state = {
-      first_name: null,
-      last_name: null,
+      firstname: null,
+      lastname: null,
       password: null,
       email: null,
       errorMessage: null
@@ -20,13 +20,13 @@ class Registration extends Component {
   }
 
   register = () =>{
-    if(this.state.last_name != null && this.state.first_name != null && this.state.password != null && this.state.email != null){
+    if(this.state.lastname != null && this.state.firstname != null && this.state.password != null && this.state.email != null){
       if(this.testMail(this.state.email)){
         this.setState({errorMessage : null});
         axios.post('http://localhost:1337/auth/signup', {
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          name: this.state.last_name + ' '+ this.state.first_name,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          name: this.state.lastname + ' '+ this.state.firstname,
           password: this.state.password,
           email: this.state.email
         })
@@ -48,11 +48,11 @@ class Registration extends Component {
 
   change = (e) =>{
     switch (e.target.name) {
-      case "last_name":
-        this.setState({last_name: e.target.value})
+      case "lastname":
+        this.setState({lastname: e.target.value})
         break;
-      case "first_name":
-        this.setState({first_name: e.target.value})
+      case "firstname":
+        this.setState({firstname: e.target.value})
         break;
       case "email":
         this.setState({email: e.target.value})
@@ -78,11 +78,11 @@ class Registration extends Component {
           </div>
           <div className="form-group col-md-12">
             <label >Lastname</label>
-            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" name="last_name" onChange={this.change}/>
+            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" name="lastname" onChange={this.change}/>
           </div>
           <div className="form-group col-md-12">
             <label >Firstname</label>
-          <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="first_name" onChange={this.change}/>
+          <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="firstname" onChange={this.change}/>
         </div>
         <button type="submit" className="btn btn-primary" onClick={this.register}>Sign up</button>
       </div>
