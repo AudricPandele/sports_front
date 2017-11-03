@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 class Registration extends Component {
 
@@ -10,7 +17,8 @@ class Registration extends Component {
       lastname: null,
       password: null,
       email: null,
-      errorMessage: null
+      errorMessage: null,
+      redirectLog : null,
     }
   }
 
@@ -63,29 +71,34 @@ class Registration extends Component {
     }
   }
 
+  changeForm = () => {
+    this.setState({redirectLog: 'login'});
+    console.log(this.state);
+  }
+
   render() {
+
+    const { redirectLog } = this.state;
+
+    if (redirectLog) {
+
+      return (
+        <Redirect to='/login' />
+      )
+    }
+
     return (
+
       <div className="container">
-        <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-          <h2>Inscription</h2>
-          <div className="form-group col-md-12">
-            <label >Email</label>
-            <input type="email" className="form-control" id="inputEmail4" placeholder="Email" name="email" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Password</label>
-            <input type="password" className="form-control" id="inputPassword4" placeholder="Password" name="password" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Lastname</label>
-            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" name="lastname" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Firstname</label>
-          <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="firstname" onChange={this.change}/>
-        </div>
-        <button type="submit" className="btn btn-primary" onClick={this.register}>Sign up</button>
-      </div>
+        <form className="signUp">
+          <h3>Create Your Account</h3>
+          <input className="w100" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} />
+          <input className="w100" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} />
+          <input className="w100" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} />
+          <input type="password" placeholder="Password" required onChange={this.change} />
+          <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Log In</button>
+          <button className="form-btn dx" type="submit" >Sign Up</button>
+        </form>
       </div>
     );
   }

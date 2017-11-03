@@ -11,6 +11,8 @@ import '../App.css';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cookies from 'universal-cookie';
+import '../styles/auth.css';
+
 
 class Login extends Component {
   constructor(){
@@ -20,7 +22,9 @@ class Login extends Component {
       email: null,
       errorMessage: null,
       redirect: false,
-      token: null
+      token: null,
+      active: true,
+      redirectReg: null,
     }
   }
 
@@ -76,28 +80,36 @@ class Login extends Component {
     }
   }
 
+  changeForm = () => {
+    this.setState({redirectReg: 'signup'});
+    console.log(this.state);
+  }
+
+
   render() {
     const { redirect } = this.state;
-
     if (redirect) {
-
       return (
         <Redirect to='/home/' />
       );
     }
+
+    const { redirectReg } = this.state;
+      if (redirectReg){
+        return (
+          <Redirect to = '/signup' />
+        );
+      }
     return (
       <div className="container">
-        <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-          <div className="form-group col-md-12">
-            <label>Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label>Password</label>
-            <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" name="password" onChange={this.change}/>
-          </div>
-          <button type="submit" className="btn btn-primary" onClick={this.login}>Submit</button>
-        </div>
+        <form className="signUp">
+          <h3>Welcome Back !</h3>
+          <input type="email" placeholder="Insert eMail" autoComplete='off' onChange={this.change} required />
+          <input type="password" placeholder="Insert Password" onChange={this.change} required />
+          <div>{this.state.errorMessage}</div>
+          <button className="form-btn sx back" type="button" onClick={this.changeForm} >Back</button>
+          <button className="form-btn dx" type="submit" onClick={this.login} >Log In</button>
+        </form>
       </div>
     );
   }
