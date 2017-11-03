@@ -30,7 +30,7 @@ class Registration extends Component {
           password: this.state.password,
           email: this.state.email
         })
-        .then(function (response) {
+        .then((response) => {
           console.log(response);
         })
         .catch(function (error) {
@@ -61,6 +61,7 @@ class Registration extends Component {
         this.setState({password: e.target.value})
         break;
     }
+
   }
 
   render() {
