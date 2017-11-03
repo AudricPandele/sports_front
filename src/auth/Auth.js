@@ -7,7 +7,6 @@ class Auth extends Component {
   render() {
     return (
       <div>
-        <Login />
         <Registration />
         <CreateEvent />
       </div>
