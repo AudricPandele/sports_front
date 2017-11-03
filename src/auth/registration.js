@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Cookies from 'universal-cookie'
+import Cookies from 'universal-cookie';
 import {
   BrowserRouter as Router,
   Link,
@@ -19,7 +19,8 @@ class Registration extends Component {
       password: null,
       email: null,
       errorMessage: null,
-      redirect: false
+      redirect: false,
+      redirectLog : null,
     }
   }
 
@@ -29,6 +30,7 @@ class Registration extends Component {
   }
 
   register = () =>{
+    console.log(this.state);
     if(this.state.lastname != null && this.state.firstname != null && this.state.password != null && this.state.email != null){
       if(this.testMail(this.state.email)){
         this.setState({errorMessage : null});
@@ -75,6 +77,12 @@ class Registration extends Component {
         this.setState({password: e.target.value})
         break;
     }
+
+  }
+
+  changeForm = () => {
+    this.setState({redirectLog: 'login'});
+    console.log(this.state);
   }
 
   render() {
@@ -83,28 +91,28 @@ class Registration extends Component {
         <Redirect to='/home/' />
       );
     }
+
+    const { redirectLog } = this.state;
+
+    if (redirectLog) {
+
+      return (
+        <Redirect to='/login' />
+      )
+    }
+
     return (
+
       <div className="container">
-        <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-          <h2>Inscription</h2>
-          <div className="form-group col-md-12">
-            <label >Email</label>
-            <input type="email" className="form-control" id="inputEmail4" placeholder="Email" name="email" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Password</label>
-            <input type="password" className="form-control" id="inputPassword4" placeholder="Password" name="password" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Lastname</label>
-            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" name="lastname" onChange={this.change}/>
-          </div>
-          <div className="form-group col-md-12">
-            <label >Firstname</label>
-          <input type="text" className="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="firstname" onChange={this.change}/>
-        </div>
-        <button type="submit" className="btn btn-primary" onClick={this.register}>Sign up</button>
-      </div>
+        <form className="signUp">
+          <h3>Create Your Account</h3>
+          <input className="w100" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} name="lastname" />
+          <input className="w100" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} name="firstname"/>
+          <input className="w100" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} name="email"/>
+          <input type="password" placeholder="Password" required onChange={this.change} name="password"/>
+          <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Log In</button>
+          <button className="form-btn dx" type="button" onClick={this.register}>Sign Up</button>
+        </form>
       </div>
     );
   }
