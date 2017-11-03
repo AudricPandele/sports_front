@@ -49,12 +49,9 @@ class Login extends Component {
             password : this.state.password
           })
           .then((response) => {
-            const cookiesTOKEN = new Cookies();
-            cookiesTOKEN.set('sport_token', response.data.token, {path: '/'});
-
-            const cookiesID = new Cookies();
-            cookiesID.set('sport_id', response.data.user.id, {path: '/'});
-
+            const cookies = new Cookies();
+            cookies.set('sport_token',response.data.token ,{path: '/'});
+            cookies.set('sport_id',response.data.user.id ,{path: '/'});
             this.setState({
               token: response.data.token,
               redirect: true
@@ -77,7 +74,7 @@ class Login extends Component {
   }
 
   render() {
-    const { redirect } = this.state;
+    const { redirect } = this.state.redirect;
 
     if (redirect) {
 

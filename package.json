@@ -9,6 +9,8 @@
     "nodemon": "^1.12.1",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.5",
+    "react-cookie": "^2.1.1",
+    "react-cookies": "^0.1.0",
     "react-dom": "^16.0.0",
     "react-http-request": "^1.0.3",
     "react-router": "^4.2.0",

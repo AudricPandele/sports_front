@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie'
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
 
 class Registration extends Component {
 
@@ -10,7 +18,8 @@ class Registration extends Component {
       lastname: null,
       password: null,
       email: null,
-      errorMessage: null
+      errorMessage: null,
+      redirect: false
     }
   }
 
@@ -30,8 +39,13 @@ class Registration extends Component {
           password: this.state.password,
           email: this.state.email
         })
-        .then(function (response) {
-          console.log(response);
+        .then((response) => {
+          if(response.status = 200){
+            const cookies = new Cookies();
+            cookies.set('sport_token',response.data.token ,{path: '/'});
+            cookies.set('sport_id',response.data.id ,{path: '/'});
+            this.setState({redirect: true});
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -64,6 +78,11 @@ class Registration extends Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect to='/home/' />
+      );
+    }
     return (
       <div className="container">
         <div className="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
