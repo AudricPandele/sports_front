@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Check from './auth/Check'
 import Menu from './home/menu.js';
+import Eventlist from './event/event_list';
 
 class Home extends Component {
   render() {
@@ -8,6 +9,8 @@ class Home extends Component {
       <div>
         <Check />
         <Menu />
+        <Eventlist />
+
       </div>
     );
   }
