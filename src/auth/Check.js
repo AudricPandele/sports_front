@@ -16,28 +16,21 @@ class Check extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
     const id = cookies.get('sport_id');
-    axios.get('http://localhost:1337/user/'+id, {
-    })
-    .then((response) => {
+    if(id == null && token == null){
       this.setState({result : true});
-    })
-    .catch(function (error) {
-      console.log(error);
-  });
+    }
   }
 
   render() {
-    return (
-      <div>
-            {!this.state ? (
-              <Redirect to='/' />
-            ) : (
-              <div>
-                
-              </div>
-            )}
-      </div>
-    );
+    if(this.state.result != null){
+      return(<Redirect to='/login' />);
+    }
+    else{
+      return (
+        <div>
+        </div>
+      );
+    }
   }
 }
 

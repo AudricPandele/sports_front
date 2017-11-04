@@ -4,6 +4,7 @@ import Home from './Home.js'
 import Auth from './auth/Auth.js'
 import Login from './auth/Login.js'
 import Registration from './auth/registration.js'
+import Logout from './auth/Logout.js'
 
 const Main = () => (
   <main>
@@ -12,6 +13,7 @@ const Main = () => (
       <Route path='/home' component={Home}/>
       <Route path = '/login' component={Login}/>
       <Route path = '/signup' component={Registration}/>
+      <Route path = '/logout' component={Logout}/>
     </Switch>
   </main>
 )
