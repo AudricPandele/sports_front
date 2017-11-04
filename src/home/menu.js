@@ -13,7 +13,7 @@ class Menu extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <a className="nav-item nav-link active" href="/">Accueil <span className="sr-only">(current)</span></a>
+              <a className="nav-item nav-link active" href="/home">Accueil <span className="sr-only">(current)</span></a>
               <a className="nav-item nav-link" href="/event">Mes évenements</a>
               <a className="nav-item nav-link" href="/createEvent">Créer un évenement</a>
               <a className="nav-item nav-link" href="/account">Mon compte</a>
