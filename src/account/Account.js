@@ -18,8 +18,9 @@ class Account extends Component {
 
     axios.get('http://localhost:1337/user/'+user_id)
     .then((response) => {
+      console.log(response.data);
       this.setState({
-        data: response.data
+        data: response.data.user
       })
     })
     .catch(function (error) {
