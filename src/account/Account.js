@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import Menu from './../home/menu.js';
-import AddSport from './add_sport.js';
+import SportsList from './sports_list.js';
 
 class Account extends Component {
   constructor(){
@@ -18,7 +18,6 @@ class Account extends Component {
 
     axios.get('http://localhost:1337/user/'+user_id)
     .then((response) => {
-      console.log(response.data);
       this.setState({
         data: response.data.user
       })
@@ -52,23 +51,20 @@ class Account extends Component {
                     <label>Birthday : {this.state.data.birthday}</label><br/>
                   </div>
                 </div>
+                <a href="#" className="btn btn-primary">Save changes</a>
                 <div className="row">
-                  <div className="col-sm-12">
+                  <div className="col-sm-12" style={{marginBottom: '10px'}}>
                     <h3 className="card-title">My sports</h3><br/>
                     {!this.state.data.sportList ? (
                       <div>
                         Chargement
                       </div>
                     ) : (
-                      <AddSport data={this.state.data.sportList}/>
+                      <SportsList data={this.state.data.sportList}/>
                     )}
                     <a href="#" className="btn btn-primary">Add sport</a>
                   </div>
                 </div>
-
-            </div><br/>
-              <div className="card-footer text-muted">
-                <a href="#" className="btn btn-primary">Save changes</a>
               </div>
             </div>
           </div>
