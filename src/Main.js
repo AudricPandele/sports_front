@@ -6,6 +6,7 @@ import Login from './auth/Login.js'
 import Registration from './auth/registration.js'
 import Logout from './auth/Logout.js'
 import Eventdetail from './event/event_detail.js'
+import Account from './account/Account.js'
 
 const Main = () => (
   <main>
@@ -16,6 +17,7 @@ const Main = () => (
       <Route path = '/signup' component={Registration}/>
       <Route path = '/logout' component={Logout}/>
       <Route path = '/event/:id' component={Eventdetail}/>
+      <Route path = '/account/:id' component={Account}/>
     </Switch>
   </main>
 )
