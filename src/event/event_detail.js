@@ -9,7 +9,11 @@ class Eventdetail extends Component {
     super();
     this.state = {
       id: null,
-      name: null
+      name: null,
+      level: null,
+      number_of_participants: null,
+      place: null,
+      description: null
     }
   }
 
@@ -17,7 +21,15 @@ class Eventdetail extends Component {
     this.setState({id : this.props.match.params.id});
     axios.get('http://localhost:1337/event/'+this.props.match.params.id)
     .then((response) => {
-      this.setState({ name : response.data.name });
+      console.log(response);
+      this.setState({
+        name : response.data.name ,
+        level : response.data.level.value,
+        number_of_participants: response.data.number_of_participants,
+        place: response.data.place,
+        sport: response.data.sport.name,
+        description: response.data.description
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -31,8 +43,13 @@ class Eventdetail extends Component {
         <div className="row">
           <div className="card col-sm-12 col-md-10 offset-md-1">
             <div className="card-body">
-              <h4 className="card-title">{this.state.name}</h4>
-              <p className="card-text">Détails</p>
+              <h4 className="card-title">{this.state.name} - {this.state.level}</h4>
+              <p className="card-text">
+                Nombre de participants : {this.state.number_of_participants}<br/>
+                Lieux : {this.state.place}<br/>
+                Sport : {this.state.sport}<br/>
+                <i>{this.state.description}</i>
+              </p>
               <a href="#" className="btn btn-primary">Postuler</a>
             </div>
           </div>
