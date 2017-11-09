@@ -7,6 +7,7 @@ import Registration from './auth/registration.js'
 import Logout from './auth/Logout.js'
 import Eventdetail from './event/event_detail.js'
 import Account from './account/Account.js'
+import createEvent from './createEvent/CreateEvent.js'
 
 const Main = () => (
   <main>
@@ -18,6 +19,7 @@ const Main = () => (
       <Route path = '/logout' component={Logout}/>
       <Route path = '/event/:id' component={Eventdetail}/>
       <Route path = '/account/:id' component={Account}/>
+      <Route path = '/create_event' component={createEvent}/>
     </Switch>
   </main>
 )

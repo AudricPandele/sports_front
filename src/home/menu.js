@@ -23,7 +23,7 @@ class Menu extends Component {
             <div className="navbar-nav">
               <a className={this.props.active == 'home' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/home">Accueil <span className="sr-only">(current)</span></a>
               <a className={this.props.active == 'myEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/event">Mes évenements</a>
-              <a className={this.props.active == 'createEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/createEvent">Créer un évenement</a>
+              <a className={this.props.active == 'createEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/create_event">Créer un évenement</a>
               <a className={this.props.active == 'account' ? 'nav-item nav-link active' : 'nav-item nav-link'} href={"/account/"+user_id}>Mon compte</a>
               <a className={this.props.active == 'logout' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/logout">Décconexion</a>
             </div>
