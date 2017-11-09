@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div>
         <Check />
-        <Menu />
+        <Menu  active="home"/>
         <Eventlist />
 
       </div>
