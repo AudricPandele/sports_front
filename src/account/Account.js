@@ -62,7 +62,6 @@ class Account extends Component {
                     ) : (
                       <SportsList data={this.state.data.sportList}/>
                     )}
-                    <a href="#" className="btn btn-primary">Add sport</a>
                   </div>
                 </div>
               </div>

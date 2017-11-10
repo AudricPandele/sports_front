@@ -35,11 +35,14 @@ class SportsList extends Component {
   }
 
   render() {
+    const cookies = new Cookies();
+    const user_id = cookies.get('sport_id');
+
     return (
       <div>
-        {!this.props.data ? (
+        {this.props.data.length === 0 ? (
           <div className="center">
-            No sport selected
+            <p>No sport selected</p>
           </div>
         ) : (
           this.props.data.map((item) => {
@@ -77,7 +80,7 @@ class SportsList extends Component {
             </div>
           })
         )}
-
+        <a href="/add_sport" className="btn btn-primary">Add sport</a>
       </div>
     );
   }
