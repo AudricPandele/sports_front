@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 
 class Eventitem extends Component {
 
-  static propTypes = {
-    item: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-  }
 
   render() {
     return (
@@ -15,9 +10,9 @@ class Eventitem extends Component {
         <div className="row">
           <div className="card col-sm-10 offset-sm-1">
             <div className="card-body">
-              <h4 className="card-title">{this.props.name}- NIVEAU</h4>
-              <h6 className="card-subtitle mb-2 text-muted">Date</h6>
-              <p className="card-text">Lieu</p>
+              <h4 className="card-title">{this.props.name} - {this.props.level}</h4>
+              <h6 className="card-subtitle mb-2 text-muted">{this.props.place}</h6>
+              <p className="card-text">{this.props.sport}</p>
               <a href={"../event/"+this.props.id} className="card-link">Détails</a>
             </div>
           </div>

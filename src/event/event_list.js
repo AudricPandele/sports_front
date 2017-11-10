@@ -7,7 +7,7 @@ class Eventlist extends Component {
   constructor(){
     super();
     this.state = {
-      data: [],
+      data: null,
     }
   }
 
@@ -22,17 +22,28 @@ class Eventlist extends Component {
   }
 
   render() {
-    return (
-      <div className="row">
+    if(this.state.data){
+      return (
+        <div className="row">
 
-        {this.state.data.map((item) => {
-          return <Eventitem
-            name={item.name}
-            id={item.id}
-          />
-        })}
-      </div>
-    );
+          {this.state.data.map((item) => {
+            return <Eventitem
+              name={item.name}
+              id={item.id}
+              sport={item.sport.name}
+              level={item.level.value}
+              place={item.place}
+              sport={item.sport.name}
+            />
+          })}
+        </div>
+      );
+    }
+    else{
+      return (
+        <div>Chargement ... </div>
+      );
+    }
   }
 }
 
