@@ -21,15 +21,23 @@ class Eventdetail extends Component {
     this.setState({id : this.props.match.params.id});
     axios.get('http://localhost:1337/event/'+this.props.match.params.id)
     .then((response) => {
-      console.log(response);
+      var level = "NC";
+      var sport = "NC";
+      if(response.data.level){
+        level = response.data.level.value;
+      }
+      if(response.data.sport){
+        sport = response.data.sport.name
+      }
       this.setState({
         name : response.data.name ,
-        level : response.data.level.value,
+        level : level,
         number_of_participants: response.data.number_of_participants,
         place: response.data.place,
-        sport: response.data.sport.name,
+        sport: sport,
         description: response.data.description
       });
+      console.log(this.state);
     })
     .catch(function (error) {
       console.log(error);

@@ -30,10 +30,9 @@ class Eventlist extends Component {
             return <Eventitem
               name={item.name}
               id={item.id}
-              sport={item.sport.name}
-              level={item.level.value}
+              sport={item.sport ? item.sport.name : ''}
+              level={item.level ? item.level.value : ''}
               place={item.place}
-              sport={item.sport.name}
             />
           })}
         </div>

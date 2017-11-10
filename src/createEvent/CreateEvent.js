@@ -118,7 +118,7 @@ class Event extends Component {
                            <input type="number" className="form-control" id="inputNumber_of_participants" placeholder="combien êtes vous ?" name="number_of_participants" onChange={this.change}/>
                          </div>
                          <div className="col-sm-6 col-sm-offset-3">
-                           <input type="text" className="form-control" id="inputPlace" placeholder="Ou c'est lol ?" name="place" onChange={this.change}/>
+                           <input type="text" className="form-control" id="inputPlace" placeholder="Lieu" name="place" onChange={this.change}/>
                          </div>
                          <div className="col-sm-6 col-sm-offset-3">
                            <label >Sport</label>
