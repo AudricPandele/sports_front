@@ -95,6 +95,7 @@ class Event extends Component {
     render () {
         const { data } = this.state
 
+        console.log(data);
         return (
             <div>
                <Menu active="createEvent"/>

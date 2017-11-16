@@ -26,7 +26,6 @@ class ListUser extends Component {
    .catch(function (error) {
      console.log(error);
    });
-   //this.getStatus(status, i);
   }
 
   getStatus = (id, i) =>{
