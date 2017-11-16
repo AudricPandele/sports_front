@@ -34,6 +34,7 @@ class Eventlist extends Component {
               level={item.level ? item.level.value : ''}
               place={item.place}
               number_of_participants = {item.number_of_participants}
+              date={item.date}
             />
           })}
         </div>

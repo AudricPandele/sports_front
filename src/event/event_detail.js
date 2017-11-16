@@ -78,7 +78,7 @@ class Eventdetail extends Component {
             <span className="cardDate">
             <Moment format="DD/MM">
               {this.state.date}
-          </Moment>
+            </Moment>
             </span>
             <img className="card-img-top" src="http://guinee7.com/wp-content/uploads/2017/11/football.jpg" alt="Card image cap"/>
             <span className="sportBadge">{this.state.level}</span>
