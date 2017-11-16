@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Menu from '../home/menu';
 import axios from 'axios'
 import ListUser from '../user/listUser';
+import Cookies from 'universal-cookie';
+import ListUserItem from '../user/listUser-item';
 
 class Eventdetail extends Component {
 
@@ -15,12 +17,13 @@ class Eventdetail extends Component {
       number_of_participants: null,
       place: null,
       description: null,
-      data : null,
+      participants : null,
+      sport: null,
+      owner : null,
     }
   }
 
   componentDidMount(){
-    this.setState({id : this.props.match.params.id});
     axios.get('http://localhost:1337/event/'+this.props.match.params.id)
     .then((response) => {
       var level = "NC";
@@ -32,14 +35,31 @@ class Eventdetail extends Component {
         sport = response.data.sport.name
       }
       this.setState({
-        name : response.data.name ,
-        level : level,
-        number_of_participants: response.data.number_of_participants,
-        place: response.data.place,
-        sport: sport,
-        description: response.data.description,
-        data : response.data
-      });
+        id: response.data.id,
+        level: level,
+        name : response.data.name,
+        number_of_participants : response.data.number_of_participants,
+        place : response.data.place,
+        sport : sport,
+        participants : response.data.participants,
+        owner : response.data.owner,
+      })
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  postule = () =>{
+    const cookies = new Cookies();
+    const id = cookies.get('sport_id');
+    axios.post('http://localhost:1337/group',{
+      event : this.state.id,
+      user : id,
+      status : 1
+    })
+    .then((response) => {
+      console.log(response);
     })
     .catch(function (error) {
       console.log(error);
@@ -60,10 +80,10 @@ class Eventdetail extends Component {
             <h2 className="card-title text-center">{this.state.name}</h2>
             <p className="card-text">{this.state.place}</p>
             <p>{this.state.description}</p>
-            <button className="btn btn-card">Postuler</button>
+            <button className="btn btn-card" onClick={this.postule}>Postuler</button>
           </div>
         </div>
-        {this.state.data && <ListUser data={this.state.data.participants}/>}
+        {this.state.participants && <ListUser data={this.state.participants} owner={this.state.owner}/>}
       </div>
     );
   }
