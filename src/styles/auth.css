@@ -5,7 +5,66 @@
 }
 
 body {
-    background: #203F57 ;
+    background: #d3eafb ;
+}
+.menu{
+  background: #47495f;
+  border-radius: 0px;
+  color: #e74c3c;
+}
+
+.profilePic{
+  width:64px;
+  height: 64px;
+  border-radius: 50%;
+}
+
+.sportBadge{
+  position: relative;
+  top: -28px;
+  left: 0;
+  background: #e74c3c;
+  padding: 10px 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cardText{
+  background: white;
+}
+.card-title{
+  margin-top:-20px;
+  color: #464646;
+  font-family: 'Raleway', sans-serif;
+}
+.btn-card{
+  background: #e74c3c;
+  border: #9c2a1e;
+  color: white;
+}
+.btn-card:hover{
+  background: #9c2a1e;
+  color:white
+}
+.cardDate{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  background: #e74c3c;
+  width: 55px;
+  height: 55px;
+  padding: 15px 0;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-align: center;
+  -webkti-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .container{
