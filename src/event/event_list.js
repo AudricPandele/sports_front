@@ -24,19 +24,22 @@ class Eventlist extends Component {
   render() {
     if(this.state.data){
       return (
-        <div className="row mr-0">
+        <div className="row">
+          <div className="col-md-12">
 
           {this.state.data.map((item) => {
             return <Eventitem
               name={item.name}
               id={item.id}
               sport={item.sport ? item.sport.name : ''}
+              picture={item.sport ? item.sport.picture : ''}
               level={item.level ? item.level.value : ''}
               place={item.place}
               number_of_participants = {item.number_of_participants}
               date={item.date}
             />
           })}
+          </div>
         </div>
       );
     }
