@@ -4,11 +4,13 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 class SportsList extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       sports: [],
       levels: [],
+      newSport: null,
+      newLevel: null,
     }
   }
 
@@ -34,53 +36,110 @@ class SportsList extends Component {
     });
   }
 
+  deleteList = (id) => {
+    axios.delete('http://localhost:1337/sportlist/'+id)
+    .then((response) => {
+      this.props.onListUpdate(true)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  handleSportChange = (sport) => {
+    this.setState({
+      newSport: sport
+    })
+  }
+
+  handleLevelChange = (level) => {
+    this.setState({
+      newLevel: level
+    })
+  }
+
+  createNewList = () => {
+    if (this.state.newSport && this.state.newLevel) {
+      const cookies = new Cookies();
+      const user_id = cookies.get('sport_id');
+
+      axios.post('http://localhost:1337/user/'+user_id+'/sportlist', {
+        sport: this.state.newSport,
+        level: this.state.newLevel
+      })
+      .then((response) => {
+        this.props.onListUpdate(true)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }else{
+      alert('Sélectionnez un sport et un niveau')
+    }
+  }
+
   render() {
     const cookies = new Cookies();
     const user_id = cookies.get('sport_id');
 
     return (
-      <div>
+      <div className="col-sm-10 col-sm-offset-1">
+        <ul className="list-group text-left">
         {this.props.data.length === 0 ? (
           <div className="center">
             <p>No sport selected</p>
           </div>
         ) : (
-          this.props.data.map((item) => {
-            return <div className="row text-left" style={{marginBottom: '10px'}}>
-              <div class="col-sm-6 col-sm-offset-3">
-                <div className="col-sm-6">
-                  {this.state.sports.lenght == 0 ? (
-                    <div className="center">
-                      No sports
-                    </div>
-                  ) : (
-                    <Select
-                      name={item.sport.name}
-                      value={item.sport.id}
-                      data={this.state.sports}
-                      label="sport"
-                    />
-                  )}
+            this.props.data.map((item) => {
+              return <div>
+                <div className="col-sm-11">
+                  <li className="list-group-item justify-content-between">
+                    {item.sport.name}
+                    <span className="badge badge-default badge-pill">{item.level.value}</span>
+                  </li>
                 </div>
-                <div className="col-sm-6">
-                  {this.state.levels.lenght == 0 ? (
-                    <div className="center">
-                      No levels
-                    </div>
-                  ) : (
-                    <Select
-                      name={item.level.value}
-                      value={item.level.id}
-                      data={this.state.levels}
-                      label="level"
-                    />
-                  )}
+
+                <div className="col-sm-1">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    onClick={() => { this.deleteList(item.id) }}>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </button>
                 </div>
               </div>
-            </div>
-          })
+            })
         )}
-        <a href="/add_sport" className="btn btn-primary">Add sport</a>
+        </ul>
+
+        <h3>Nouveau sport</h3>
+
+        <div className="row">
+          <div className="col-sm-5 col-sm-offset-1">
+            {this.state.sports.length === 0 ? (
+              <p>loading</p>
+            ) : (
+              <Select
+                data={this.state.sports}
+                onSelectChange={this.handleSportChange}/>
+            )}
+          </div>
+          <div className="col-sm-5">
+            {this.state.levels.length === 0 ? (
+              <p>loading</p>
+            ) : (
+              <Select
+                data={this.state.levels}
+                onSelectChange={this.handleLevelChange}/>
+            )}
+          </div>
+        </div>
+        <br/>
+        <button
+          className="btn btn-primary"
+          onClick={this.createNewList}>
+          Add sport
+        </button>
       </div>
     );
   }

@@ -12,7 +12,7 @@ class Account extends Component {
     }
   }
 
-  componentDidMount() {
+  getData = () => {
     const cookies = new Cookies();
     const user_id = cookies.get('sport_id');
 
@@ -27,6 +27,14 @@ class Account extends Component {
     });
   }
 
+  componentDidMount() {
+    this.getData()
+  }
+
+  updateList = () => {
+    this.getData()
+  }
+
   render() {
     return (
       <div>
@@ -39,7 +47,7 @@ class Account extends Component {
             <div className="col-sm-6 col-sm-offset-3">
               <div className="card text-center">
                 <div className="card-header">
-                  Account information
+                  Informations du compte
                 </div>
                 <div className="card-block">
                   <div className="row">
@@ -57,13 +65,15 @@ class Account extends Component {
                   <a href="#" className="btn btn-primary">Save changes</a>
                   <div className="row">
                     <div className="col-sm-12" style={{marginBottom: '10px'}}>
-                      <h3>My sports</h3><br/>
+                      <h3>Mes sports</h3>
                       {!this.state.data.sportList ? (
                         <div>
                           Chargement
                         </div>
                       ) : (
-                        <SportsList data={this.state.data.sportList}/>
+                        <SportsList
+                          data={this.state.data.sportList}
+                          onListUpdate={this.updateList}/>
                       )}
                     </div>
                   </div>
