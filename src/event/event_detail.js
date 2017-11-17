@@ -5,6 +5,7 @@ import axios from 'axios'
 import ListUser from '../user/listUser';
 import Cookies from 'universal-cookie';
 import ListUserItem from '../user/listUser-item';
+import Moment from 'react-moment';
 
 class Eventdetail extends Component {
 
@@ -20,6 +21,7 @@ class Eventdetail extends Component {
       participants : null,
       sport: null,
       owner : null,
+      date: null,
     }
   }
 
@@ -43,6 +45,7 @@ class Eventdetail extends Component {
         sport : sport,
         participants : response.data.participants,
         owner : response.data.owner,
+        date : response.data.date,
       })
     })
     .catch(function (error) {
@@ -72,7 +75,11 @@ class Eventdetail extends Component {
         <Menu />
         <div className="card col-12 col-sm-12 col-md-4 col-sm-offset-1">
           <div>
-            <span className="cardDate">27/11</span>
+            <span className="cardDate">
+            <Moment format="DD/MM">
+              {this.state.date}
+            </Moment>
+            </span>
             <img className="card-img-top" src="http://guinee7.com/wp-content/uploads/2017/11/football.jpg" alt="Card image cap"/>
             <span className="sportBadge">{this.state.level}</span>
           </div>

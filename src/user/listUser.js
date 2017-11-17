@@ -11,10 +11,10 @@ class ListUser extends Component {
         return (
         <div className="col-12 col-sm-12 col-md-4 col-sm-offset-1 mt-5 mt-md-0">
           <div className="list-group" id="list-tab" role="tablist">
-            <ListUserItem name={this.props.owner.name} owner="true" />
+            <ListUserItem userId={this.props.owner.id} name={this.props.owner.name} owner="true" />
           {this.props.data.map((item) =>{
             if(item.status.name != "Refusé")
-              return <ListUserItem name={item.user.name} owner="false" status={item.status}/>
+              return <ListUserItem userId={item.user.id} name={item.user.name} owner="false" status={item.status}/>
           })}
           </div>
         </div>
