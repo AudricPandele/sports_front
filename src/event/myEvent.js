@@ -10,6 +10,7 @@ class MyEvent extends Component {
     super();
     this.state = {
       user: null,
+      actualise : null
     }
   }
 
@@ -19,11 +20,15 @@ class MyEvent extends Component {
     axios.get('http://localhost:1337/user/'+id)
     .then((response) => {
       this.setState({user : response.data});
-      
+
     })
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  ChangeStatus = (value) =>{
+    this.setState({actualise : this.state.actualise + 1});
   }
 
   render() {
@@ -33,7 +38,9 @@ class MyEvent extends Component {
         { this.state.user ? (
           this.state.user.events.map((item)=>{
             return(
-              <EventCard data={item} />
+              <EventCard data={item}
+                onChangeStatus={this.ChangeStatus}
+              />
             );
           })
         ):(

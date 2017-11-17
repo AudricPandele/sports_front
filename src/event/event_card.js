@@ -13,6 +13,14 @@ class EventCard extends Component {
   }
 
   componentDidMount(){
+    this.getValue();
+  }
+
+  componentWillReceiveProps(newProps){
+    this.getValue();
+  }
+
+  getValue = () =>{
     axios.get('http://localhost:1337/event/'+this.props.data.id)
     .then((response) => {
       this.setState({user : response.data});
@@ -20,6 +28,19 @@ class EventCard extends Component {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  updateStatus = (value, id) =>{
+    console.log(id);
+     axios.put('http://localhost:1337/group/'+id,{
+       status : 2
+     })
+     .then((response) => {
+       this.props.onChangeStatus(true);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
   }
 
   render() {
@@ -55,8 +76,8 @@ class EventCard extends Component {
                               <span className="badge badge-info float-right">{item.status.name}</span>
                             ):(
                               <div>
-                                <button type="button" className="btn btn-success">Valider</button>
-                                <button type="button" className="btn btn-danger ml-5">Refuser</button>
+                                <button type="button" className="btn btn-success" onClick={() =>{ this.updateStatus(2 , item.id) }}>Valider</button>
+                                <button type="button" className="btn btn-danger ml-5" onClick={() =>{ this.updateStatus(3 , item.id) }}>Refuser</button>
                               </div>
                             )}
                           </div>
