@@ -30,7 +30,6 @@ class Registration extends Component {
   }
 
   register = () =>{
-    console.log(this.state);
     if(this.state.lastname != null && this.state.firstname != null && this.state.password != null && this.state.email != null){
       if(this.testMail(this.state.email)){
         this.setState({errorMessage : null});

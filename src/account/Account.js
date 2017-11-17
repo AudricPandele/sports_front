@@ -3,12 +3,15 @@ import Cookies from 'universal-cookie';
 import axios from 'axios';
 import Menu from './../home/menu.js';
 import SportsList from './sports_list.js';
+import ListOpinion from '../opinion/list_opinion';
+import EventHistory from '../event/event_history'
 
 class Account extends Component {
   constructor(){
     super();
     this.state = {
       data: [],
+      user_id : null,
     }
   }
 
@@ -28,6 +31,8 @@ class Account extends Component {
   }
 
   componentDidMount() {
+    const cookies = new Cookies();
+    this.setState({ user_id : cookies.get('sport_id') });
     this.getData()
   }
 
@@ -43,7 +48,7 @@ class Account extends Component {
         {!this.state.data ? (
           <p>Loading</p>
         ) : (
-          <div className="row">
+          <div>
             <div className="col-sm-6 col-sm-offset-3">
               <div className="card text-center">
                 <div className="card-block">
@@ -76,6 +81,22 @@ class Account extends Component {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {!this.state.user_id ? (
+              null
+            ):(
+                <div className="col-sm-6 col-sm-offset-3 mt-5">
+                  <EventHistory
+                    user={this.state.user_id}
+                  />
+                </div>
+            )}
+
+            <div className="col-sm-6 col-sm-offset-3 mt-5">
+              <ListOpinion
+                recipient={this.props.match.params.id}
+              />
             </div>
           </div>
         )}
