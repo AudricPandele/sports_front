@@ -3,17 +3,28 @@ import PropTypes from 'prop-types';
 import Menu from '../home/menu';
 import axios from 'axios';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import Opinion from '../opinion/opinion';
+import ListOpinion from '../opinion/list_opinion';
 
 class userDetails extends Component {
   constructor(){
     super();
     this.state = {
       user: null,
+      actualise: 0,
     }
   }
 
   componentDidMount(){
+    this.getValue()
+  }
+
+  ChangeOpinion = (value) =>{
+    this.setState({actualise : this.state.actualise + 1});
+  }
+
+  getValue = () =>{
     axios.get('http://localhost:1337/user/'+this.props.match.params.id)
     .then((response) => {
       this.setState({user : response.data});
@@ -21,6 +32,10 @@ class userDetails extends Component {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  componentWillReceiveProps(){
+    this.getValue();
   }
 
   render() {
@@ -45,6 +60,21 @@ class userDetails extends Component {
                     </Link>
                   );
                 })}
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-sm-8 col-sm-offset-2 mt-5">
+            <div className="card">
+              <div className="card-body">
+                <Opinion recipient={this.props.match.params.id}
+                onChangeOpinion={this.ChangeOpinion}/>
+              </div>
+              <ul className="list-group list-group-flush">
+                <ListOpinion
+                  recipient={this.props.match.params.id}
+                  actualise={this.state.actualise}
+                />
               </ul>
             </div>
           </div>
