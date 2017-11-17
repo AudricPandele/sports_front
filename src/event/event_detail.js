@@ -22,6 +22,7 @@ class Eventdetail extends Component {
       sport: null,
       owner : null,
       date: null,
+      picture: null,
     }
   }
 
@@ -46,6 +47,8 @@ class Eventdetail extends Component {
         participants : response.data.participants,
         owner : response.data.owner,
         date : response.data.date,
+        picture: response.data.sport.picture
+
       })
     })
     .catch(function (error) {
@@ -73,14 +76,14 @@ class Eventdetail extends Component {
     return (
       <div>
         <Menu />
-        <div className="card col-12 col-sm-12 col-md-4 col-sm-offset-1">
+        <div className="card col-12 col-sm-12 col-md-6 col-sm-offset-1">
           <div>
             <span className="cardDate">
             <Moment format="DD/MM">
               {this.state.date}
             </Moment>
             </span>
-            <img className="card-img-top" src="http://guinee7.com/wp-content/uploads/2017/11/football.jpg" alt="Card image cap"/>
+            <img className="card-img-top" src={this.state.picture} alt="Card image cap"/>
             <span className="sportBadge">{this.state.level}</span>
           </div>
           <div className="card-body">

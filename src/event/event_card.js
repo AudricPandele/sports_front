@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class EventCard extends Component {
 
@@ -33,7 +34,7 @@ class EventCard extends Component {
                     {this.props.data.date}
                   </Moment>
                 </span>
-                <img className="card-img-top" src="http://guinee7.com/wp-content/uploads/2017/11/football.jpg" alt="Card image cap"/>
+                <img className="card-img-top" src={this.props.data.sport.picture} alt="Card image cap"/>
                 <span className="sportBadge">{this.props.data.level.value}</span>
               </div>
               <ul className="list-group list-group-flush">
@@ -44,8 +45,10 @@ class EventCard extends Component {
                       <li className="list-group-item">
                         <div className="row">
                           <div className="col-8">
-                            <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
-                            {item.user.name}
+                            <Link to={'user/'+item.user.id}>
+                              <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
+                              {item.user.name}
+                            </Link>
                           </div>
                           <div className="col-4">
                             {item.status.name != "En attente" ? (
