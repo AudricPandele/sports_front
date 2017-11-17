@@ -40,11 +40,11 @@ class Menu extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <a className={this.props.active == 'home' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/home">Accueil <span className="sr-only">(current)</span></a>
-              <a className={this.props.active == 'myEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/event">Mes évenements</a>
-              <a className={this.props.active == 'createEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/create_event">Créer un évenement</a>
-              <a className={this.props.active == 'account' ? 'nav-item nav-link active' : 'nav-item nav-link'} href={"/account/"+user_id}>Mon compte</a>
-              <a className={this.props.active == 'logout' ? 'nav-item nav-link active' : 'nav-item nav-link'} href="/logout">Décconexion</a>
+              <Link to={"/home"} className={this.props.active == 'home' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Accueil</Link>
+              <Link to={"/event"} className={this.props.active == 'myEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Mes évenements</Link>
+              <Link to={"/create_event"} className={this.props.active == 'createEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Créer un évenement</Link>
+              <Link to={"/account/"+user_id} className={this.props.active == 'account' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Mon compte</Link>
+              <Link to={"/logout"} className={this.props.active == 'logout' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Déconexion</Link>
             </div>
           </div>
         </nav>
