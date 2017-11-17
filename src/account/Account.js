@@ -46,9 +46,6 @@ class Account extends Component {
           <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
               <div className="card text-center">
-                <div className="card-header">
-                  Informations du compte
-                </div>
                 <div className="card-block">
                   <div className="row">
                     <div className="col-sm-12">

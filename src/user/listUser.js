@@ -9,7 +9,7 @@ class ListUser extends Component {
   render() {
       if(this.props.data){
         return (
-        <div className="col-12 col-sm-12 col-md-4 col-sm-offset-1 mt-5 mt-md-0">
+        <div className="col-12 col-sm-12 col-md-4 mt-5 mt-md-0">
           <div className="list-group" id="list-tab" role="tablist">
             <ListUserItem userId={this.props.owner.id} name={this.props.owner.name} owner="true" />
           {this.props.data.map((item) =>{
