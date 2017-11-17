@@ -9,6 +9,8 @@ import Eventdetail from './event/event_detail.js'
 import Account from './account/Account.js'
 import AddSport from './account/AddSport.js'
 import createEvent from './createEvent/CreateEvent.js'
+import userDetails from './user/userDetails.js'
+import MyEvent from './event/myEvent.js'
 
 const Main = () => (
   <main>
@@ -22,6 +24,8 @@ const Main = () => (
       <Route path = '/account/:id' component={Account}/>
       <Route path = '/add_sport' component={AddSport}/>
       <Route path = '/create_event' component={createEvent}/>
+      <Route path = '/user/:id' component={userDetails}/>
+      <Route path = '/event' component={MyEvent}/>
     </Switch>
   </main>
 )

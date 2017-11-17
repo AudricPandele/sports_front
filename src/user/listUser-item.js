@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ListUserItem extends Component {
 
@@ -27,11 +28,13 @@ class ListUserItem extends Component {
 
   render() {
     return (
-      <a className="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">
+      <div className="list-group-item list-group-item-action" id="list-home-list">
         <div className="row">
           <div className="col-8">
             <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
-            {this.props.name}
+            <Link to={"/user/"+this.props.userId}>
+              {this.props.name}
+            </Link>
           </div>
           <div className="col-4 text-right">
             {this.props.owner == "true" ? (
@@ -42,7 +45,7 @@ class ListUserItem extends Component {
 
           </div>
         </div>
-      </a>
+      </div>
     )
   }
 }
