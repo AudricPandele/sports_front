@@ -5,6 +5,7 @@ import Select from './../account/select.js';
 import SportsList from './../account/sports_list.js';
 import Menu from './../home/menu.js';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class Event extends Component {
     constructor() {
@@ -49,6 +50,8 @@ class Event extends Component {
     }
 
     componentDidMount() {
+      const cookies = new Cookies();
+      this.setState({ user_id : cookies.get('sport_id') });
       this.getSports()
       this.getLevels()
     }
@@ -60,6 +63,7 @@ class Event extends Component {
           number_of_participants: this.state.number_of_participants,
           place: this.state.place,
           date: this.state.date,
+          owner: this.state.user_id,
           sport: this.state.newSport,
           level: this.state.newLevel
         })
