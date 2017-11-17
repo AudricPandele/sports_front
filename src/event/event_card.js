@@ -55,7 +55,7 @@ class EventCard extends Component {
                     {this.props.data.date}
                   </Moment>
                 </span>
-                <img className="card-img-top" src="http://guinee7.com/wp-content/uploads/2017/11/football.jpg" alt="Card image cap"/>
+                <img className="card-img-top" src={this.props.data.sport.picture} alt="Card image cap"/>
                 <span className="sportBadge">{this.props.data.level.value}</span>
               </div>
               <ul className="list-group list-group-flush">

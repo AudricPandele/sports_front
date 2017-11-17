@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route} from 'react-router-dom';
 import axios from 'axios';
-import Select from './../Select';
+import Select from './../account/select.js';
+import SportsList from './../account/sports_list.js';
 import Menu from './../home/menu.js';
-
+import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class Event extends Component {
     constructor() {
@@ -15,10 +17,11 @@ class Event extends Component {
             number_of_participants: null,
             place: null,
             owner: null,
-            sport: null,
-            level: null,
-            sports: null,
-            levels: null,
+            date: null,
+            sports: [],
+            levels: [],
+            newSport: null,
+            newLevel: null,
         }
     }
 
@@ -47,6 +50,8 @@ class Event extends Component {
     }
 
     componentDidMount() {
+      const cookies = new Cookies();
+      this.setState({ user_id : cookies.get('sport_id') });
       this.getSports()
       this.getLevels()
     }
@@ -57,22 +62,38 @@ class Event extends Component {
           description: this.state.description,
           number_of_participants: this.state.number_of_participants,
           place: this.state.place,
-          sport: this.state.sport,
-          level: this.state.level
+          date: this.state.date,
+          owner: this.state.user_id,
+          sport: this.state.newSport,
+          level: this.state.newLevel
         })
         .then((response) => {
           console.log(response);
+          alert("Évènement créé !");
         })
         .catch(function (error) {
           console.log(error);
         });
     }
 
+    handleSportChange = (sport) => {
+      this.setState({
+        newSport: sport
+      })
+      console.log('sport changed')
+    }
+
+    handleLevelChange = (level) => {
+      this.setState({
+        newLevel: level
+      })
+      console.log('lvl changed')
+    }
+
     change = (e) =>{
         switch (e.target.name) {
           case "name":
             this.setState({name: e.target.value})
-            console.log("yo2")
             break;
           case "description":
             this.setState({description: e.target.value})
@@ -83,12 +104,8 @@ class Event extends Component {
           case "place":
             this.setState({place: e.target.value})
             break;
-          case "sport":
-            this.setState({sport: e.target.value})
-            break;
-          case "level":
-            this.setState({level: e.target.value})
-            break;
+          case "date":
+            this.setState({date: e.target.value})
         }
       }
 
@@ -121,86 +138,40 @@ class Event extends Component {
                            <input type="text" className="form-control" id="inputPlace" placeholder="Lieu" name="place" onChange={this.change}/>
                          </div>
                          <div className="col-sm-6 col-sm-offset-3">
-                           <label >Sport</label>
-                            {!data ? (
-                              <div>loading</div>
-                            ) : (
-                              <Select
-                                data={data.sports}
-                                className="form-control"
-                                id="inputSport"
-                                name="sport"
-                                onChange={this.change}
-                              />
-                            )}
+                           <input type="date" className="form-control" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
+                         </div>
+                       </div>
 
-                    {/* <input type="text" className="form-control" id="inputSport" placeholder="C'est quel sport magueule ?" name="sport" onChange={this.change}/> */}
-                        </div>
-                        <div className="col-sm-6 col-sm-offset-3">
-                          <label >Level</label>
-                            {!data ? (
-                              <div>loading</div>
-                            ) : (
-                              <Select
-                                data={data.levels}
-                                className="form-control"
-                                id="inputLevel"
-                                name="level"
-                                onChange={this.change}
-                              />
-                            )}
-                    {/* <input type="text" className="form-control" id="inputLevel" placeholder="Niveau de jeu" name="level" onChange={this.change}/> */}
-                        </div>
+                         <div className="row">
+                           <div className="col-sm-3 col-sm-offset-3">
+                             {!this.state.sports ? (
+                               <p>loading</p>
+                             ) : (
+                               <Select
+                                 data={this.state.sports}
+                                 onSelectChange={this.handleSportChange}/>
+                             )}
+                           </div>
+                           <div className="col-sm-3">
+                             {!this.state.levels ? (
+                               <p>loading</p>
+                             ) : (
+                               <Select
+                                 data={this.state.levels}
+                                 onSelectChange={this.handleLevelChange}/>
+                             )}
+                           </div>
+                         </div>
+                         <Link to={"../home"}
+                           className="btn btn-primary"
+                           onClick={this.createEvent}>
+                           Créer l'évènement
+                         </Link>
                       </div>
-                    <button type="submit" className="btn btn-primary" onClick={this.createEvent}>Créer</button>
                   </div>
                 </div>
               </div>
             </div>
-
-
-
-          {/* <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-              <div className="card text-center">
-                <div className="card-header">
-                  Account information
-                </div>
-                <div className="card-block">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <h3 className="card-title">{this.state.data.name}</h3><br/>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="text-left col-sm-4 col-sm-offset-4">
-                      <label>Email : {this.state.data.email}</label><br/>
-                      <label>Gender : {this.state.data.gender}</label><br/>
-                      <label>Birthday : {this.state.data.birthday}</label><br/>
-                    </div>
-                  </div>
-                  <button type="submit" className="btn btn-primary" onClick={this.createEvent}>Créer</button>
-                  <div className="row">
-                    <div className="col-sm-12" style={{marginBottom: '10px'}}>
-                      <h3 className="card-title">My sports</h3><br/>
-                      {!this.state.data.sportList ? (
-                        <div>
-                          Chargement
-                        </div>
-                      ) : (
-                        <SportsList data={this.state.data.sportList}/>
-                      )}
-                      <a href="#" className="btn btn-primary">Add sport</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-
-
-        </div>
         );
     }
 }
