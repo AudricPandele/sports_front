@@ -64,7 +64,7 @@ class Account extends Component {
                       <label>Birthday : {this.state.data.birthday}</label><br/>
                     </div>
                   </div>
-                  <a href="#" className="btn btn-primary">Save changes</a>
+                  <a href="#" className="btn btn-primary" style={{marginTop: '10px'}}>Save changes</a>
                   <div className="row">
                     <div className="col-sm-12" style={{marginBottom: '10px'}}>
                       <h3>Mes sports</h3>

@@ -35,7 +35,6 @@ class EventHistory extends Component {
                 return(
                   <Link to={"/event/"+item.id}>
                     <li className="list-group-item">
-                        <span className="badge">{item.status.name}</span>
                       {item.name} le <Moment format="DD/MM/YYYY">{item.date}</Moment> à {item.place}
                     </li>
                   </Link>

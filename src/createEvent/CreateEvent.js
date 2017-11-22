@@ -117,57 +117,49 @@ class Event extends Component {
             <div>
                <Menu active="createEvent"/>
 
-               <div className="row">
-                 <div className="col-sm-6 col-sm-offset-3">
-                   <div className="card text-center">
-                     <div className="card-header">
-                       Créer un evenement
-                     </div>
-                     <div className="card-block">
-                       <div className="row">
-                         <div className="col-sm-6 col-sm-offset-3">
-                           <input type="text" className="form-control" id="inputName" placeholder="Nom de l'évènement" name="name" onChange={this.change}/>
-                         </div>
-                         <div className="col-sm-6 col-sm-offset-3">
-                           <input type="text" className="form-control" id="inputDescription" placeholder="Description" name="description" onChange={this.change}/>
-                         </div>
-                         <div className="col-sm-6 col-sm-offset-3">
-                           <input type="number" className="form-control" id="inputNumber_of_participants" placeholder="combien êtes vous ?" name="number_of_participants" onChange={this.change}/>
-                         </div>
-                         <div className="col-sm-6 col-sm-offset-3">
-                           <input type="text" className="form-control" id="inputPlace" placeholder="Lieu" name="place" onChange={this.change}/>
-                         </div>
-                         <div className="col-sm-6 col-sm-offset-3">
-                           <input type="date" className="form-control" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
-                         </div>
-                       </div>
-
-                         <div className="row">
-                           <div className="col-sm-3 col-sm-offset-3">
-                             {!this.state.sports ? (
-                               <p>loading</p>
-                             ) : (
-                               <Select
-                                 data={this.state.sports}
-                                 onSelectChange={this.handleSportChange}/>
-                             )}
-                           </div>
-                           <div className="col-sm-3">
-                             {!this.state.levels ? (
-                               <p>loading</p>
-                             ) : (
-                               <Select
-                                 data={this.state.levels}
-                                 onSelectChange={this.handleLevelChange}/>
-                             )}
-                           </div>
-                         </div>
-                         <Link to={"../home"}
-                           className="btn btn-primary"
-                           onClick={this.createEvent}>
-                           Créer l'évènement
-                         </Link>
+               <div className="col-sm-6 col-sm-offset-3">
+                <div className="card text-center">
+                  <div className="card-block">
+                    <div className="row">
+                      <div className="col-sm-12">
+                        <h3>Create your event</h3><br/>
                       </div>
+                    </div>
+                    <div className="row">
+                      <div className="text-left col-sm-4 col-sm-offset-4">
+                        <input type="text" className="w100" id="inputName" placeholder="Event name" name="name" onChange={this.change}/>
+                        <input type="text" className="w100" id="inputDescription" placeholder="Description" name="description" onChange={this.change}/>
+                        <input type="number" className="w100" id="inputNumber_of_participants" placeholder="How many ?" name="number_of_participants" onChange={this.change}/>
+                        <input type="text" className="w100" id="inputPlace" placeholder="Location" name="place" onChange={this.change}/>
+                        <input type="date" className="w100" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm-3 col-sm-offset-3">
+                        {!this.state.sports ? (
+                          <p>loading</p>
+                        ) : (
+                          <Select
+                            data={this.state.sports}
+                            onSelectChange={this.handleSportChange}/>
+                        )}
+                      </div>
+                      <div className="col-sm-3 ">
+                        {!this.state.levels ? (
+                          <p>loading</p>
+                        ) : (
+                          <Select
+                            data={this.state.levels}
+                            onSelectChange={this.handleLevelChange}/>
+                        )}
+                      </div>
+                    </div>
+                    <Link to={"../home"}
+                      className="btn btn-primary"
+                      onClick={this.createEvent}
+                      style={{marginBottom: '10px', marginTop: '20px'}}>
+                      Créer l'évènement
+                    </Link>
                   </div>
                 </div>
               </div>
