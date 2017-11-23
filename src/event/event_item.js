@@ -14,7 +14,7 @@ class Eventitem extends Component {
              <div className="thumbnail img-thumb-bg" style={{ backgroundImage: 'url('+this.props.picture+')' }}>
                  <div className="overlay"></div>
                  <div className="caption">
-                     <div className="tag">this.props.level}</div>
+                     <div className="tag">{this.props.level}</div>
                      <div className="title"><Link to={"../event/"+this.props.id}>{this.props.name}</Link></div>
                      <div className="clearfix">
                          <span className="meta-data">By <Link to={"../user/"+this.props.owner_id}>{this.props.owner}</Link> on &nbsp;
