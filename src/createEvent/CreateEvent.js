@@ -69,7 +69,6 @@ class Event extends Component {
         })
         .then((response) => {
           console.log(response);
-          alert("Évènement créé !");
           this.setState({redirect : true});
         })
         .catch(function (error) {
@@ -155,12 +154,12 @@ class Event extends Component {
                         )}
                       </div>
                     </div>
-                    <Link to={"../home"}
+                    <button
                       className="btn btn-primary"
                       onClick={this.createEvent}
                       style={{marginBottom: '10px', marginTop: '20px'}}>
                       Créer l'évènement
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
