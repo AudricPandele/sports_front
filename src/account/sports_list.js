@@ -79,8 +79,6 @@ class SportsList extends Component {
   }
 
   render() {
-    const cookies = new Cookies();
-    const user_id = cookies.get('sport_id');
 
     return (
       <div className="col-sm-10 col-sm-offset-1">
@@ -102,9 +100,9 @@ class SportsList extends Component {
                 <div className="col-sm-1">
                   <button
                     type="button"
-                    class="btn btn-danger"
+                    className="btn btn-danger"
                     onClick={() => { this.deleteList(item.id) }}>
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                   </button>
                 </div>
               </div>

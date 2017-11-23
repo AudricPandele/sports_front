@@ -24,7 +24,6 @@ class Eventlist extends Component {
   render() {
     if(this.state.data){
       return (
-        <div className="row">
           <div className="col-md-12">
 
           {this.state.data.map((item) => {
@@ -40,7 +39,6 @@ class Eventlist extends Component {
             />
           })}
           </div>
-        </div>
       );
     }
     else{

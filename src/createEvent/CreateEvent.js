@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Switch, Route} from 'react-router-dom';
 import axios from 'axios';
 import Select from './../account/select.js';
-import SportsList from './../account/sports_list.js';
 import Menu from './../home/menu.js';
-import { Link } from 'react-router-dom';
+import { Link , Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 class Event extends Component {
@@ -22,6 +20,7 @@ class Event extends Component {
             levels: [],
             newSport: null,
             newLevel: null,
+            redirect: null,
         }
     }
 
@@ -65,11 +64,13 @@ class Event extends Component {
           date: this.state.date,
           owner: this.state.user_id,
           sport: this.state.newSport,
-          level: this.state.newLevel
+          level: this.state.newLevel,
+          status: 1
         })
         .then((response) => {
           console.log(response);
           alert("Évènement créé !");
+          this.setState({redirect : true});
         })
         .catch(function (error) {
           console.log(error);
@@ -111,8 +112,8 @@ class Event extends Component {
 
     render () {
         const { data } = this.state
-
-        console.log(data);
+        if(this.state.redirect)
+          return (<Redirect to='/home'/>);
         return (
             <div>
                <Menu active="createEvent"/>
@@ -162,11 +163,11 @@ class Event extends Component {
                              )}
                            </div>
                          </div>
-                         <Link to={"../home"}
+                         <button
                            className="btn btn-primary"
                            onClick={this.createEvent}>
                            Créer l'évènement
-                         </Link>
+                         </button>
                       </div>
                   </div>
                 </div>

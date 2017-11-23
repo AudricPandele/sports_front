@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 
 class ListOpinion extends Component {
@@ -38,7 +37,7 @@ class ListOpinion extends Component {
             return (
               <li className="list-group-item">
                 <Link to={'/user/'+item.transmitter.id} >
-                  <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
+                  <img src={item.transmitter.photo} className="profilePic mr-2" alt="Profile Picture"/>
                   <b>{item.transmitter.name} : </b>
                 </Link>
                 {item.message}

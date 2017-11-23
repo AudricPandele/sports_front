@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Registration extends Component {
 
@@ -41,7 +35,8 @@ class Registration extends Component {
           email: this.state.email
         })
         .then((response) => {
-          if(response.status = 200){
+          console.log(response);
+          if(response.status == 200){
             const cookies = new Cookies();
             cookies.set('sport_token',response.data.token ,{path: '/'});
             cookies.set('sport_id',response.data.id ,{path: '/'});

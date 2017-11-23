@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import logo from '../logo.svg';
+import { Redirect } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';

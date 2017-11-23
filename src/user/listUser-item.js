@@ -31,7 +31,7 @@ class ListUserItem extends Component {
       <div className="list-group-item list-group-item-action" id="list-home-list">
         <div className="row">
           <div className="col-8">
-            <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
+            <img src={this.props.photo} className="profilePic mr-2" />
             <Link to={"/user/"+this.props.userId}>
               {this.props.name}
             </Link>

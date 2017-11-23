@@ -33,7 +33,7 @@ class EventCard extends Component {
   updateStatus = (value, id) =>{
     console.log(id);
      axios.put('http://localhost:1337/group/'+id,{
-       status : 2
+       status : value
      })
      .then((response) => {
        this.props.onChangeStatus(true);
@@ -46,7 +46,7 @@ class EventCard extends Component {
   render() {
     if(this.props.data){
       return(
-        <div className="col-sm-6 col-sm-offset-3 mt-5">
+        <div className="col-sm-6 col-sm-offset-3">
           <div className="row">
             <div className="card col-12">
               <div>

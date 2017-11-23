@@ -13,6 +13,10 @@ body {
   color: #e74c3c;
 }
 
+.event-item{
+  height:500px;
+}
+
 .profilePic{
   width:64px;
   height: 64px;
@@ -31,6 +35,9 @@ body {
 }
 .cardText{
   background: white;
+}
+.card-image{
+  height: 250px;
 }
 .card-title{
   margin-top:-20px;

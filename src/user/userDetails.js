@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Menu from '../home/menu';
-import axios from 'axios';
-import Moment from 'react-moment';
-import { Link, Redirect } from 'react-router-dom';
 import Opinion from '../opinion/opinion';
 import ListOpinion from '../opinion/list_opinion';
 import EventHistory from '../event/event_history';

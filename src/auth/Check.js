@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import axios from 'axios'
 
 class Check extends Component {
 

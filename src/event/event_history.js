@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class EventHistory extends Component {
   constructor(){
@@ -27,7 +27,7 @@ class EventHistory extends Component {
       return(
           <div className="card">
             <div className="card-body">
-              <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
+              <img src={this.state.user.photo} className="profilePic mr-2" />
               {this.state.user.name}
             </div>
             <ul className="list-group list-group-flush">

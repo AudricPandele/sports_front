@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import Cookies from 'universal-cookie'
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Logout extends Component {
 

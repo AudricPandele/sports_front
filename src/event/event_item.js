@@ -8,7 +8,7 @@ class Eventitem extends Component {
 
   render() {
     return (
-      <div className="col-md-4">
+      <div className="col-md-4 event-item">
         <div className="card">
           <div>
             <span className="cardDate">
@@ -16,7 +16,7 @@ class Eventitem extends Component {
                 {this.props.date}
               </Moment>
             </span>
-            <img className="card-img-top" src={this.props.picture} alt="Card image cap"/>
+            <img className="card-img-top card-image" src={this.props.picture} alt="Card image cap"/>
             <span className="sportBadge">{this.props.level}</span>
           </div>
           <div className="card-body">

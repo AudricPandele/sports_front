@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Menu from '../home/menu';
 import axios from 'axios'
 import ListUser from '../user/listUser';
 import Cookies from 'universal-cookie';
-import ListUserItem from '../user/listUser-item';
 import Moment from 'react-moment';
 
 class Eventdetail extends Component {
@@ -27,6 +25,9 @@ class Eventdetail extends Component {
   }
 
   componentDidMount(){
+    this.getvalue();
+  }
+  getvalue = () =>{
     axios.get('http://localhost:1337/event/'+this.props.match.params.id)
     .then((response) => {
       var level = "NC";
@@ -65,7 +66,7 @@ class Eventdetail extends Component {
       status : 1
     })
     .then((response) => {
-      console.log(response);
+      this.getvalue();
     })
     .catch(function (error) {
       console.log(error);
@@ -83,7 +84,7 @@ class Eventdetail extends Component {
               {this.state.date}
             </Moment>
             </span>
-            <img className="card-img-top" src={this.state.picture} alt="Card image cap"/>
+            <img className="card-img-top" src={this.state.picture} alt={this.state.sport}/>
             <span className="sportBadge">{this.state.level}</span>
           </div>
           <div className="card-body">
