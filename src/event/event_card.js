@@ -75,9 +75,13 @@ class EventCard extends Component {
                             {item.status.name != "En attente" ? (
                               <span className="badge badge-info float-right">{item.status.name}</span>
                             ):(
-                              <div>
-                                <button type="button" className="btn btn-success" onClick={() =>{ this.updateStatus(2 , item.id) }}>Valider</button>
-                                <button type="button" className="btn btn-danger ml-5" onClick={() =>{ this.updateStatus(3 , item.id) }}>Refuser</button>
+                              <div className="h-100">
+                                <button type="button" className="btn btn-outline-success h-100" onClick={() =>{ this.updateStatus(2 , item.id) }}>
+                                  <i className="material-icons">done</i>
+                                </button>
+                                <button type="button" className="btn btn-outline-danger ml-2 h-100" onClick={() =>{ this.updateStatus(3 , item.id) }}>
+                                  <i className="material-icons">clear</i>
+                                </button>
                               </div>
                             )}
                           </div>

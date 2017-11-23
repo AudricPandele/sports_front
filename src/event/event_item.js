@@ -8,23 +8,27 @@ class Eventitem extends Component {
 
   render() {
     return (
-      <div class="col-lg-4 col-md-4 col-sm-6">
-         <div class="thumbnail img-thumb-bg" style={{ backgroundImage: 'url('+this.props.picture+')' }}>
-             <div class="overlay"></div>
-             <div class="caption">
-                 <div class="tag"><a href="#">{this.props.level}</a></div>
-                 <div class="title"><Link to={"../event/"+this.props.id}>{this.props.name}</Link></div>
-                 <div class="clearfix">
-                     <span class="meta-data">By <Link to={"../user/"+this.props.owner_id}>{this.props.owner}</Link> on &nbsp;
-                     <Moment format="DD/MM/YYYY">
-                         {this.props.date}
-                     </Moment></span>
-                 </div>
-                 <div class="content">
-                     <p>{this.props.place}</p>
+      <div>
+        <Link to={"../event/"+this.props.id} >
+          <div className="col-lg-4 col-md-4 col-sm-6">
+             <div className="thumbnail img-thumb-bg" style={{ backgroundImage: 'url('+this.props.picture+')' }}>
+                 <div className="overlay"></div>
+                 <div className="caption">
+                     <div className="tag">this.props.level}</div>
+                     <div className="title"><Link to={"../event/"+this.props.id}>{this.props.name}</Link></div>
+                     <div className="clearfix">
+                         <span className="meta-data">By <Link to={"../user/"+this.props.owner_id}>{this.props.owner}</Link> on &nbsp;
+                         <Moment format="DD/MM/YYYY">
+                             {this.props.date}
+                         </Moment></span>
+                     </div>
+                     <div className="content">
+                         <p>{this.props.place}</p>
+                     </div>
                  </div>
              </div>
-         </div>
+          </div>
+        </Link>
       </div>
     );
   }
