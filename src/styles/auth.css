@@ -8,13 +8,21 @@ body {
     background: #d3eafb ;
 }
 .menu{
-  background: #47495f;
+  background: #2F5A75;
   border-radius: 0px;
   color: #e74c3c;
 }
 
 .event-item{
   height:500px;
+}
+
+.navbar-brand{
+  font-family: 'Dosis';
+}
+
+.navbar-nav{
+  font-family: 'Roboto' , sans-serif;
 }
 
 .profilePic{
@@ -188,7 +196,7 @@ input {
     border-bottom: 1px solid #203F57 ;
     width: 85%;
     font-family: 'Roboto';
-    color: #203F57;
+    color: rgba(159, 213, 248, 0.65);
     text-align: center;
     font-size: 21px;
     font-weight:100;
@@ -196,25 +204,25 @@ input {
 }
 
 ::-webkit-input-placeholder {
-   color: #203F57 ;
+   color: rgba(159, 213, 248, 0.65) ;
     font-family: 'Roboto';
     font-weight:100;
 }
 
 :-moz-placeholder {
-   color: #203F57 ;
+   color: rgba(159, 213, 248, 0.65) ;
     font-family: 'Roboto';
     font-weight:100;
 }
 
 ::-moz-placeholder {
-   color: #203F57 ;
+   color: rgba(159, 213, 248, 0.65) ;
     font-family: 'Roboto';
     font-weight:100;
 }
 
 :-ms-input-placeholder {
-   color: #203F57 ;
+   color: rgba(159, 213, 248, 0.65) ;
     font-family: 'Roboto';
     font-weight:100;
 }

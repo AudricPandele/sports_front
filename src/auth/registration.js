@@ -103,7 +103,7 @@ class Registration extends Component {
           <input className="w100" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} name="lastname" />
           <input className="w100" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} name="firstname"/>
           <input className="w100" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} name="email"/>
-          <input type="password" placeholder="Password" required onChange={this.change} name="password"/>
+          <input className="w100" type="password" placeholder="Password" required onChange={this.change} name="password"/>
           <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Log In</button>
           <button className="form-btn dx" type="button" onClick={this.register}>Sign Up</button>
         </form>
