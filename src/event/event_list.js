@@ -36,6 +36,8 @@ class Eventlist extends Component {
               place={item.place}
               number_of_participants = {item.number_of_participants}
               date={item.date}
+              owner={item.owner.name}
+              owner_id={item.owner.id}
             />
           })}
           </div>

@@ -8,23 +8,23 @@ class Eventitem extends Component {
 
   render() {
     return (
-      <div className="col-md-4 event-item">
-        <div className="card">
-          <div>
-            <span className="cardDate">
-              <Moment format="DD/MM">
-                {this.props.date}
-              </Moment>
-            </span>
-            <img className="card-img-top card-image" src={this.props.picture} alt="Card image cap"/>
-            <span className="sportBadge">{this.props.level}</span>
-          </div>
-          <div className="card-body">
-            <h2 className="card-title text-center">{this.props.name}</h2>
-            <p className="card-text">{this.props.place}</p>
-            <Link to={"../event/"+this.props.id} className="btn btn-card">Détails</Link>
-          </div>
-        </div>
+      <div class="col-lg-4 col-md-4 col-sm-6">
+         <div class="thumbnail img-thumb-bg" style={{ backgroundImage: 'url('+this.props.picture+')' }}>
+             <div class="overlay"></div>
+             <div class="caption">
+                 <div class="tag"><a href="#">{this.props.level}</a></div>
+                 <div class="title"><Link to={"../event/"+this.props.id}>{this.props.name}</Link></div>
+                 <div class="clearfix">
+                     <span class="meta-data">By <Link to={"../user/"+this.props.owner_id}>{this.props.owner}</Link> on &nbsp;
+                     <Moment format="DD/MM/YYYY">
+                         {this.props.date}
+                     </Moment></span>
+                 </div>
+                 <div class="content">
+                     <p>{this.props.place}</p>
+                 </div>
+             </div>
+         </div>
       </div>
     );
   }
