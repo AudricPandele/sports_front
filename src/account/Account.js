@@ -18,8 +18,15 @@ class Account extends Component {
   getData = () => {
     const cookies = new Cookies();
     const user_id = cookies.get('sport_id');
+    const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/user/'+user_id)
+    axios.get('http://localhost:1337/user/'+user_id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({
         data: response.data

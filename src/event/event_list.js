@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
-import Eventitem from './event_item'
-import axios from 'axios'
+import Eventitem from './event_item';
+import Toggle from './toggle';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+import './styles/style.css';
 
 class Eventlist extends Component {
 
   constructor(){
     super();
     this.state = {
-      data: null,
+      data: [],
     }
   }
 
   componentDidMount() {
-    axios.get('http://localhost:1337/event')
+    this.getInterests()
+  }
+
+  getInterests = () => {
+    const cookies = new Cookies();
+    const user_id = cookies.get('sport_id');
+    const token = cookies.get('sport_token');
+
+    axios.get(
+      'http://localhost:1337/user/'+user_id+'/interests',
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+  	    }
+      })
     .then((response) => {
       this.setState({ data : response.data });
     })
@@ -21,10 +39,44 @@ class Eventlist extends Component {
     });
   }
 
+  getAllEvents = () => {
+    const cookies = new Cookies();
+    const user_id = cookies.get('sport_id');
+    const token = cookies.get('sport_token');
+    const header =  'Authorization : Bearer '+token;
+
+    axios.get('http://localhost:1337/event',
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
+    .then((response) => {
+      this.setState({ data : response.data });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  displayAppropriateEvents = (e) => {
+    if (e.isChecked) {
+      this.getAllEvents()
+    }else{
+      this.getInterests()
+    }
+  }
+
   render() {
     if(this.state.data){
       return (
           <div className="col-md-12">
+            <div className="row">
+              <div className="col-sm-12">
+                <Toggle onToggleChange={this.displayAppropriateEvents}/>
+              </div>
+            </div>
 
           {this.state.data.map((item) => {
             return (

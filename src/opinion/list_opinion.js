@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class ListOpinion extends Component {
 
@@ -12,7 +13,16 @@ class ListOpinion extends Component {
   }
 
   getValue = () =>{
-    axios.get('http://localhost:1337/opinion/'+this.props.recipient)
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
+    axios.get('http://localhost:1337/opinion/'+this.props.recipient,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({ data : response.data });
     })

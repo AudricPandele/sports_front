@@ -25,7 +25,16 @@ class Event extends Component {
     }
 
     getSports = () => {
-      axios.get('http://localhost:1337/sport')
+      const cookies = new Cookies();
+      const token = cookies.get('sport_token');
+
+      axios.get('http://localhost:1337/sport',
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
+      })
       .then((response) => {
         this.setState({
           sports: response.data
@@ -37,7 +46,16 @@ class Event extends Component {
     }
 
     getLevels = () => {
-      axios.get('http://localhost:1337/level')
+      const cookies = new Cookies();
+      const token = cookies.get('sport_token');
+
+      axios.get('http://localhost:1337/level',
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
+      })
       .then((response) => {
         this.setState({
           levels: response.data
@@ -56,6 +74,9 @@ class Event extends Component {
     }
 
     createEvent = () => {
+      const cookies = new Cookies();
+      const token = cookies.get('sport_token');
+
       axios.post('http://localhost:1337/event', {
           name: this.state.name,
           description: this.state.description,
@@ -66,6 +87,12 @@ class Event extends Component {
           sport: this.state.newSport,
           level: this.state.newLevel,
           status: 1
+        },
+        {
+          crossdomain: true ,
+          headers: {
+             'Authorization': 'Bearer '+token
+          }
         })
         .then((response) => {
           console.log(response);

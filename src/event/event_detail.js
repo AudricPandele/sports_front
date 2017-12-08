@@ -29,7 +29,16 @@ class Eventdetail extends Component {
     this.getvalue();
   }
   getvalue = () =>{
-    axios.get('http://localhost:1337/event/'+this.props.match.params.id)
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
+    axios.get('http://localhost:1337/event/'+this.props.match.params.id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       var level = "NC";
       var sport = "NC";
@@ -61,10 +70,18 @@ class Eventdetail extends Component {
   postule = () =>{
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
+    const token = cookies.get('sport_token');
+    
     axios.post('http://localhost:1337/group',{
       event : this.state.id,
       user : id,
       status : 1
+    },
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
     })
     .then((response) => {
       this.getvalue();

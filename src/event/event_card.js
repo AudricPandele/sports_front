@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Moment from 'react-moment';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class EventCard extends Component {
 
@@ -21,7 +22,16 @@ class EventCard extends Component {
   }
 
   getValue = () =>{
-    axios.get('http://localhost:1337/event/'+this.props.data.id)
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
+    axios.get('http://localhost:1337/event/'+this.props.data.id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({user : response.data});
     })
@@ -31,9 +41,17 @@ class EventCard extends Component {
   }
 
   updateStatus = (value, id) =>{
-    console.log(id);
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
      axios.put('http://localhost:1337/group/'+id,{
        status : value
+     },
+     {
+       crossdomain: true ,
+       headers: {
+          'Authorization': 'Bearer '+token
+       }
      })
      .then((response) => {
        this.props.onChangeStatus(true);
