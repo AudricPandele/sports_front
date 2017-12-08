@@ -15,7 +15,16 @@ class SportsList extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:1337/sport')
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
+    axios.get('http://localhost:1337/sport',
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({
         sports: response.data
@@ -25,7 +34,13 @@ class SportsList extends Component {
       console.log(error);
     });
 
-    axios.get('http://localhost:1337/level')
+    axios.get('http://localhost:1337/level',
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({
         levels: response.data
@@ -37,7 +52,16 @@ class SportsList extends Component {
   }
 
   deleteList = (id) => {
-    axios.delete('http://localhost:1337/sportlist/'+id)
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
+    axios.delete('http://localhost:1337/sportlist/'+id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.props.onListUpdate(true)
     })
@@ -62,10 +86,17 @@ class SportsList extends Component {
     if (this.state.newSport && this.state.newLevel) {
       const cookies = new Cookies();
       const user_id = cookies.get('sport_id');
+      const token = cookies.get('sport_token');
 
       axios.post('http://localhost:1337/user/'+user_id+'/sportlist', {
         sport: this.state.newSport,
         level: this.state.newLevel
+      },
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
       })
       .then((response) => {
         this.props.onListUpdate(true)

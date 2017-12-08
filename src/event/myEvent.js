@@ -17,7 +17,15 @@ class MyEvent extends Component {
   componentDidMount(){
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
-    axios.get('http://localhost:1337/user/'+id)
+    const token = cookies.get('sport_token');
+
+    axios.get('http://localhost:1337/user/'+id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({user : response.data});
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 class EventHistory extends Component {
   constructor(){
@@ -12,8 +13,15 @@ class EventHistory extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.user);
-    axios.get('http://localhost:1337/user/'+this.props.user)
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+    axios.get('http://localhost:1337/user/'+this.props.user,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
     .then((response) => {
       this.setState({user : response.data});
     })

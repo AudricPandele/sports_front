@@ -15,7 +15,6 @@ class Login extends Component {
       email: null,
       errorMessage: null,
       redirect: false,
-      token: null,
       active: true,
       redirectReg: null,
     }
@@ -46,10 +45,9 @@ class Login extends Component {
           })
           .then((response) => {
             const cookies = new Cookies();
-            cookies.set('sport_token',response.data.token ,{path: '/'});
+            cookies.set('sport_token',response.data.token ,{path: '/', httpOnly : true});
             cookies.set('sport_id',response.data.user.id ,{path: '/'});
             this.setState({
-              token: response.data.token,
               redirect: true
             })
           })

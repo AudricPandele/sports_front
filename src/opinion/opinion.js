@@ -15,11 +15,20 @@ class Opinion extends Component {
   }
 
   comment = () => {
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+
     if(this.state.comment && this.state.comment != "" && this.state.transmitter && this.state.recipient){
       axios.post('http://localhost:1337/opinion', {
         recipient : this.state.recipient,
         transmitter : this.state.transmitter,
         message : this.state.comment,
+      },
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
       })
       .then((response) => {
         this.props.onChangeOpinion(true);
