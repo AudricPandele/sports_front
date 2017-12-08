@@ -94,6 +94,7 @@ class Eventdetail extends Component {
             owner_id={this.state.owner.id}
           />
         ):(null)}
+        <button className="btn btn-primary" onClick={this.postule}>Postuler</button>
         </div>
         {this.state.participants && <ListUser data={this.state.participants} owner={this.state.owner}/>}
       </div>

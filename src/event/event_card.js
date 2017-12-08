@@ -67,7 +67,7 @@ class EventCard extends Component {
                         <div className="row">
                           <div className="col-8">
                             <Link to={'user/'+item.user.id}>
-                              <img src="https://cdn2.iconfinder.com/data/icons/perfect-flat-icons-2/256/User_man_male_profile_account_person_people.png" className="profilePic" />
+                              <img src={item.user.photo} className="profilePic mr-2" />
                               {item.user.name}
                             </Link>
                           </div>
