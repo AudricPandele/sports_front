@@ -79,7 +79,9 @@ class Eventlist extends Component {
             </div>
 
           {this.state.data.map((item) => {
-            return <Eventitem
+            return (
+              <div className="col-12 col-lg-4 mb-5">
+              <Eventitem
               name={item.name}
               id={item.id}
               sport={item.sport ? item.sport.name : ''}
@@ -91,7 +93,8 @@ class Eventlist extends Component {
               owner={item.owner.name}
               owner_id={item.owner.id}
             />
-          })}
+            </div>
+          )})}
           </div>
       );
     }

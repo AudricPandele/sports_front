@@ -4,6 +4,7 @@ import axios from 'axios'
 import ListUser from '../user/listUser';
 import Cookies from 'universal-cookie';
 import Moment from 'react-moment';
+import Eventitem from './event_item'
 
 class Eventdetail extends Component {
 
@@ -59,7 +60,7 @@ class Eventdetail extends Component {
         date : response.data.date,
         picture: response.data.sport.picture
 
-      })
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -91,25 +92,25 @@ class Eventdetail extends Component {
   }
 
   render() {
+
     return (
       <div>
         <Menu />
-        <div className="card col-12 col-sm-12 col-md-6 col-sm-offset-1">
-          <div>
-            <span className="cardDate">
-            <Moment format="DD/MM">
-              {this.state.date}
-            </Moment>
-            </span>
-            <img className="card-img-top" src={this.state.picture} alt={this.state.sport}/>
-            <span className="sportBadge">{this.state.level}</span>
-          </div>
-          <div className="card-body">
-            <h2 className="card-title text-center">{this.state.name}</h2>
-            <p className="card-text">{this.state.place}</p>
-            <p>{this.state.description}</p>
-            <button className="btn btn-card" onClick={this.postule}>Postuler</button>
-          </div>
+        <div className="card col-12 col-sm-12 col-md-6 col-sm-offset-1 p-0">
+        {this.state.picture?(
+          <Eventitem
+            name={this.state.name}
+            id={this.state.id}
+            sport={this.state.sport ? this.state.sport : ''}
+            picture={this.state.sport ? this.state.picture : ''}
+            level={this.state.level ? this.state.level : ''}
+            place={this.state.place}
+            number_of_participants = {this.state.number_of_participants}
+            date={this.state.date}
+            owner={this.state.owner.name}
+            owner_id={this.state.owner.id}
+          />
+        ):(null)}
         </div>
         {this.state.participants && <ListUser data={this.state.participants} owner={this.state.owner}/>}
       </div>
