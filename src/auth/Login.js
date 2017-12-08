@@ -44,8 +44,9 @@ class Login extends Component {
             password : this.state.password
           })
           .then((response) => {
+            console.log();
             const cookies = new Cookies();
-            cookies.set('sport_token',response.data.token ,{path: '/', httpOnly : true});
+            cookies.set('sport_token',response.data.token ,{path: '/'});
             cookies.set('sport_id',response.data.user.id ,{path: '/'});
             this.setState({
               redirect: true

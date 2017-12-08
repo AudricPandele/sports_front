@@ -10,7 +10,7 @@ class Eventlist extends Component {
   constructor(){
     super();
     this.state = {
-      data: null,
+      data: [],
     }
   }
 
