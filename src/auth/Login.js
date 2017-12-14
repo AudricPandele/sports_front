@@ -91,8 +91,22 @@ class Login extends Component {
       <div className="container">
         <form className="signUp">
           <h3>Welcome Back !</h3>
-          <input type="email" placeholder="Insert eMail" autoComplete='off' onChange={this.change} required name="email" />
-          <input type="password" placeholder="Insert Password" onChange={this.change} required name="password" />
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><span className="little-at">@</span></div>
+              <input className="form-control" type="email" placeholder="Insert eMail" autoComplete='off' onChange={this.change} required name="email" />
+            </div>
+          </div>
+          <br/>
+
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><i className="little-icon material-icons">lock</i></div>
+              <input className="form-control" type="password" placeholder="Insert Password" onChange={this.change} required name="password" />
+            </div>
+          </div>
+          <br/>
+
           <div>{this.state.errorMessage}</div>
           <button className="form-btn sx back" type="button" onClick={this.changeForm} >Back</button>
           <button className="form-btn dx" type="button" onClick={this.login} >Log In</button>

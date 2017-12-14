@@ -100,10 +100,38 @@ class Registration extends Component {
       <div className="container">
         <form className="signUp">
           <h3>Create Your Account</h3>
-          <input className="w100" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} name="lastname" />
-          <input className="w100" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} name="firstname"/>
-          <input className="w100" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} name="email"/>
-          <input className="w100" type="password" placeholder="Password" required onChange={this.change} name="password"/>
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><i className="little-icon material-icons">face</i></div>
+              <input className="form-control" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} name="lastname" />
+            </div>
+          </div>
+          <br/>
+
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><i className="little-icon material-icons">face</i></div>
+              <input className="form-control" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} name="firstname" />
+            </div>
+          </div>
+          <br/>
+
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><span className="little-at">@</span></div>
+              <input className="form-control" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} name="email"/>
+            </div>
+          </div>
+          <br/>
+
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><i className="little-icon material-icons">lock</i></div>
+              <input className="form-control" type="password" placeholder="Password" required onChange={this.change} name="password"/>
+            </div>
+          </div>
+          <br/>
+
           <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Log In</button>
           <button className="form-btn dx" type="button" onClick={this.register}>Sign Up</button>
         </form>

@@ -4,6 +4,7 @@ import Select from './../account/select.js';
 import Menu from './../home/menu.js';
 import { Link , Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie';
+import Place from './inputPlace.js';
 
 class Event extends Component {
     constructor() {
@@ -128,13 +129,14 @@ class Event extends Component {
           case "number_of_participants":
             this.setState({number_of_participants: e.target.value})
             break;
-          case "place":
-            this.setState({place: e.target.value})
-            break;
           case "date":
             this.setState({date: e.target.value})
         }
       }
+
+    onChangePlace = (e) => {
+      this.setState({place: e})
+    }
 
     render () {
         const { data } = this.state
@@ -143,49 +145,84 @@ class Event extends Component {
         return (
             <div>
                <Menu active="createEvent"/>
-
                <div className="col-sm-6 col-sm-offset-3">
                 <div className="card text-center">
                   <div className="card-block">
                     <div className="row">
                       <div className="col-sm-12">
-                        <h3>Create your event</h3><br/>
+                        <h3>Créez votre évènement</h3>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="text-left col-sm-4 col-sm-offset-4">
-                        <input type="text" className="w100" id="inputName" placeholder="Event name" name="name" onChange={this.change}/>
-                        <input type="text" className="w100" id="inputDescription" placeholder="Description" name="description" onChange={this.change}/>
-                        <input type="number" className="w100" id="inputNumber_of_participants" placeholder="How many ?" name="number_of_participants" onChange={this.change}/>
-                        <input type="text" className="w100" id="inputPlace" placeholder="Location" name="place" onChange={this.change}/>
-                        <input type="date" className="w100" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
+                      <div className="text-left col-sm-8 col-sm-offset-2">
+
+                        <div className="row">
+                          <div className="col-sm-6">
+                            {!this.state.sports ? (
+                              <p>loading</p>
+                            ) : (
+                              <Select
+                                data={this.state.sports}
+                                onSelectChange={this.handleSportChange}/>
+                            )}
+                          </div>
+                          <div className="col-sm-6">
+                            {!this.state.levels ? (
+                              <p>loading</p>
+                            ) : (
+                              <Select
+                                data={this.state.levels}
+                                onSelectChange={this.handleLevelChange}/>
+                            )}
+                          </div>
+                        </div>
+                        <br/>
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">directions_run</i></div>
+                            <input type="text" className="form-control" id="inputName" placeholder="Nom" name="name" onChange={this.change}/>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">create</i></div>
+                            <input type="text" className="form-control" id="inputDescription" placeholder="Description" name="description" onChange={this.change}/>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">supervisor_account</i></div>
+                            <input type="number" className="form-control" id="inputNumber_of_participants" placeholder="Combien de personnes ?" name="number_of_participants" onChange={this.change}/>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">insert_invitation</i></div>
+                            <input type="date" className="form-control" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">location_on</i></div>
+                            <Place place={this.onChangePlace}/>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="row">
-                      <div className="col-sm-3 col-sm-offset-3">
-                        {!this.state.sports ? (
-                          <p>loading</p>
-                        ) : (
-                          <Select
-                            data={this.state.sports}
-                            onSelectChange={this.handleSportChange}/>
-                        )}
-                      </div>
-                      <div className="col-sm-3 ">
-                        {!this.state.levels ? (
-                          <p>loading</p>
-                        ) : (
-                          <Select
-                            data={this.state.levels}
-                            onSelectChange={this.handleLevelChange}/>
-                        )}
-                      </div>
-                    </div>
+
                     <button
                       className="btn btn-primary"
                       onClick={this.createEvent}
                       style={{marginBottom: '10px', marginTop: '20px'}}>
-                      Créer l'évènement
+                      Créer
                     </button>
                   </div>
                 </div>

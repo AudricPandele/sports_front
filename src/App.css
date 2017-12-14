@@ -131,3 +131,15 @@ a:active {
 .img-thumb-bg:hover .caption .content {
   display: block;
 }
+
+.little-icon{
+  font-size: 16px;
+}
+
+.little-at{
+  font-size: 20px;
+}
+
+.col-auto{
+  padding: 0;
+}
