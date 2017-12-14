@@ -36,7 +36,7 @@ class Registration extends Component {
         })
         .then((response) => {
           console.log(response);
-          if(response.status == 200){
+          if(response.status === 200){
             const cookies = new Cookies();
             cookies.set('sport_token',response.data.token ,{path: '/'});
             cookies.set('sport_id',response.data.id ,{path: '/'});
@@ -70,6 +70,8 @@ class Registration extends Component {
       case "password":
         this.setState({password: e.target.value})
         break;
+      default :
+        break;
     }
 
   }
@@ -99,13 +101,13 @@ class Registration extends Component {
 
       <div className="container">
         <form className="signUp">
-          <h3>Create Your Account</h3>
+          <h3>Inscription</h3>
           <input className="w100" type="text" placeholder="Lastname" required autoComplete='off' onChange={this.change} name="lastname" />
           <input className="w100" type="text" placeholder="Firstname" required autoComplete='off' onChange={this.change} name="firstname"/>
           <input className="w100" type="email" placeholder="eMail" required autoComplete='off' onChange={this.change} name="email"/>
           <input className="w100" type="password" placeholder="Password" required onChange={this.change} name="password"/>
-          <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Log In</button>
-          <button className="form-btn dx" type="button" onClick={this.register}>Sign Up</button>
+          <button className="form-btn sx log-in" type="button" onClick={this.changeForm} >Connexion</button>
+          <button className="form-btn dx" type="button" onClick={this.register}>Inscription</button>
         </form>
       </div>
     );

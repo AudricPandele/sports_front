@@ -28,6 +28,8 @@ class Login extends Component {
       case 'password':
         this.setState({password: e.target.value});
         break;
+      default :
+        break;
     }
   }
 
@@ -90,12 +92,12 @@ class Login extends Component {
     return (
       <div className="container">
         <form className="signUp">
-          <h3>Welcome Back !</h3>
+          <h3>Connexion</h3>
           <input type="email" placeholder="Insert eMail" autoComplete='off' onChange={this.change} required name="email" />
           <input type="password" placeholder="Insert Password" onChange={this.change} required name="password" />
           <div>{this.state.errorMessage}</div>
-          <button className="form-btn sx back" type="button" onClick={this.changeForm} >Back</button>
-          <button className="form-btn dx" type="button" onClick={this.login} >Log In</button>
+          <button className="form-btn sx back" type="button" onClick={this.changeForm} >Retour</button>
+          <button className="form-btn dx" type="button" onClick={this.login} >Connexion</button>
         </form>
       </div>
     );

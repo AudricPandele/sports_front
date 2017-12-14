@@ -47,7 +47,7 @@ class ListOpinion extends Component {
             return (
               <li className="list-group-item">
                 <Link to={'/user/'+item.transmitter.id} >
-                  <img src={item.transmitter.photo} className="profilePic mr-2" alt="Profile Picture"/>
+                  <img src={item.transmitter.photo} className="profilePic mr-2" alt="image"/>
                   <b>{item.transmitter.name} : </b>
                 </Link>
                 {item.message}

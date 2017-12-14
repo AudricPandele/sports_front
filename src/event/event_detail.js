@@ -3,7 +3,6 @@ import Menu from '../home/menu';
 import axios from 'axios'
 import ListUser from '../user/listUser';
 import Cookies from 'universal-cookie';
-import Moment from 'react-moment';
 import Eventitem from './event_item'
 
 class Eventdetail extends Component {
@@ -79,9 +78,8 @@ class Eventdetail extends Component {
     data.map((participant)=>{
       if(participant.status.id === '2')
         number_of_participants++
-      if(participant.user.id == this.state.me)
+      if(participant.user.id === this.state.me)
         postule = true
-
     });
     this.setState({
       isFull : number_of_participants > this.state.number_of_participants,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Select from './../account/select.js';
 import Menu from './../home/menu.js';
-import { Link , Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 class Event extends Component {
@@ -133,11 +133,12 @@ class Event extends Component {
             break;
           case "date":
             this.setState({date: e.target.value})
+            break;
+          default: break;
         }
       }
 
     render () {
-        const { data } = this.state
         if(this.state.redirect)
           return (<Redirect to='/home'/>);
         return (

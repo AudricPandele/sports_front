@@ -65,7 +65,7 @@ class Opinion extends Component {
   render() {
     return (
         <div className="form-group">
-          <label>Comment:</label>
+          <label>Votre commentaire:</label>
           <textarea className="form-control" rows="5" name="comment" onChange={this.change}></textarea>
           <button type="button" className="btn btn-primary mt-3" disabled={this.state.disabled} onClick={this.comment}>Commenter</button>
         </div>
