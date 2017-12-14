@@ -22,6 +22,7 @@ class Eventdetail extends Component {
       owner : null,
       date: null,
       picture: null,
+      isFull : false
     }
   }
 
@@ -61,17 +62,27 @@ class Eventdetail extends Component {
         picture: response.data.sport.picture
 
       });
+      this.checkNumberParticipants(response.data.participants)
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+  checkNumberParticipants = (data) => {
+    let number_of_participants = 0
+    data.map((participant)=>{
+      if(participant.status.id === '2')
+        number_of_participants++
+    });
+    this.setState({isFull : number_of_participants > this.state.number_of_participants})
+  }
+
   postule = () =>{
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
-    
+
     axios.post('http://localhost:1337/group',{
       event : this.state.id,
       user : id,
@@ -92,7 +103,6 @@ class Eventdetail extends Component {
   }
 
   render() {
-
     return (
       <div>
         <Menu />
@@ -111,7 +121,11 @@ class Eventdetail extends Component {
             owner_id={this.state.owner.id}
           />
         ):(null)}
-        <button className="btn btn-primary" onClick={this.postule}>Postuler</button>
+        {
+            !this.state.isFull ? (
+              <button className="btn btn-primary" onClick={this.postule}>Postuler</button>
+            ):(<button className="btn btn-primary disabled">Plus de place</button>)
+        }
         </div>
         {this.state.participants && <ListUser data={this.state.participants} owner={this.state.owner}/>}
       </div>
