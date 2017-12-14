@@ -41,9 +41,7 @@ class Eventlist extends Component {
 
   getAllEvents = () => {
     const cookies = new Cookies();
-    const user_id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
-    const header =  'Authorization : Bearer '+token;
 
     axios.get('http://localhost:1337/event',
     {
@@ -80,7 +78,7 @@ class Eventlist extends Component {
 
           {this.state.data.map((item) => {
             return (
-              <div className="col-12 col-lg-4 mb-5">
+              <div className="col-12 col-lg-4 mb-5" key={item.id}>
               <Eventitem
               name={item.name}
               id={item.id}
@@ -92,6 +90,7 @@ class Eventlist extends Component {
               date={item.date}
               owner={item.owner.name}
               owner_id={item.owner.id}
+              key={'Eventitem'+item.id}
             />
             </div>
           )})}

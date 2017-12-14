@@ -3,7 +3,6 @@ import Menu from '../home/menu';
 import axios from 'axios'
 import ListUser from '../user/listUser';
 import Cookies from 'universal-cookie';
-import Moment from 'react-moment';
 import Eventitem from './event_item'
 
 class Eventdetail extends Component {
@@ -22,6 +21,9 @@ class Eventdetail extends Component {
       owner : null,
       date: null,
       picture: null,
+      isFull : false,
+      postule : null,
+      me : null
     }
   }
 
@@ -31,6 +33,7 @@ class Eventdetail extends Component {
   getvalue = () =>{
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
+    const me = cookies.get('sport_id');
 
     axios.get('http://localhost:1337/event/'+this.props.match.params.id,
     {
@@ -58,20 +61,37 @@ class Eventdetail extends Component {
         participants : response.data.participants,
         owner : response.data.owner,
         date : response.data.date,
-        picture: response.data.sport.picture
+        picture: response.data.sport.picture,
+        me: me
 
       });
+      this.checkParticipants(response.data.participants)
     })
     .catch(function (error) {
       console.log(error);
     });
   }
 
+  checkParticipants = (data) => {
+    let number_of_participants = 0
+    let postule = false
+    data.map((participant)=>{
+      if(participant.status.id === '2')
+        number_of_participants++
+      if(participant.user.id === this.state.me)
+        postule = true
+    });
+    this.setState({
+      isFull : number_of_participants > this.state.number_of_participants,
+      postule : postule
+    })
+  }
+
   postule = () =>{
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
-    
+
     axios.post('http://localhost:1337/group',{
       event : this.state.id,
       user : id,
@@ -92,7 +112,6 @@ class Eventdetail extends Component {
   }
 
   render() {
-
     return (
       <div>
         <Menu />
@@ -111,7 +130,15 @@ class Eventdetail extends Component {
             owner_id={this.state.owner.id}
           />
         ):(null)}
-        <button className="btn btn-primary" onClick={this.postule}>Postuler</button>
+        {
+            !this.state.isFull ? (
+              !this.state.postule ? (
+                <button className="btn btn-primary" onClick={this.postule}>Postuler</button>
+              ) : (
+                <button className="btn btn-primary disabled">Postuler</button>
+              )
+            ):(<button className="btn btn-primary disabled">Plus de place</button>)
+        }
         </div>
         {this.state.participants && <ListUser data={this.state.participants} owner={this.state.owner}/>}
       </div>

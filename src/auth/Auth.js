@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Login from './Login.js';
 import Registration from './registration';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';

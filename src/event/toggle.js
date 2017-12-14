@@ -24,7 +24,7 @@ class Toggle extends Component {
         <ToggleButton
           onChange={this.handleChange}
           icons={false} />
-          <span>See all events</span>
+          <span>Afficher tous les évenements</span>
       </label>
     );
   }

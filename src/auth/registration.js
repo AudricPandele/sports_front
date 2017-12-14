@@ -36,7 +36,7 @@ class Registration extends Component {
         })
         .then((response) => {
           console.log(response);
-          if(response.status == 200){
+          if(response.status === 200){
             const cookies = new Cookies();
             cookies.set('sport_token',response.data.token ,{path: '/'});
             cookies.set('sport_id',response.data.id ,{path: '/'});
@@ -69,6 +69,8 @@ class Registration extends Component {
         break;
       case "password":
         this.setState({password: e.target.value})
+        break;
+      default :
         break;
     }
 
