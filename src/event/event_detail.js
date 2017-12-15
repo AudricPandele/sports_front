@@ -58,6 +58,7 @@ class Eventdetail extends Component {
         number_of_participants : response.data.number_of_participants,
         place : response.data.place,
         sport : sport,
+        description : response.description,
         participants : response.data.participants,
         owner : response.data.owner,
         date : response.data.date,
@@ -126,6 +127,7 @@ class Eventdetail extends Component {
             place={this.state.place}
             number_of_participants = {this.state.number_of_participants}
             date={this.state.date}
+            description={this.state.description}
             owner={this.state.owner.name}
             owner_id={this.state.owner.id}
           />
