@@ -163,6 +163,8 @@ class Event extends Component {
                               <p>loading</p>
                             ) : (
                               <Select
+                                icon="directions_bike"
+                                label="Sport"
                                 data={this.state.sports}
                                 onSelectChange={this.handleSportChange}/>
                             )}
@@ -172,6 +174,8 @@ class Event extends Component {
                               <p>loading</p>
                             ) : (
                               <Select
+                                icon="swap_vert"
+                                label="Niveau"
                                 data={this.state.levels}
                                 onSelectChange={this.handleLevelChange}/>
                             )}

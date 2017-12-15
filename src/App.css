@@ -35,9 +35,6 @@ a:focus,
 a:active {
   text-decoration: none;
 }
-.btn {
-  text-transform: uppercase;
-}
 .btn.btn-lg {
   padding: 6px 30px;
 }
@@ -140,6 +137,14 @@ a:active {
   font-size: 20px;
 }
 
+.little-margin{
+  margin-bottom: 10px;
+}
+
 .col-auto{
   padding: 0;
+}
+
+.custom-select{
+  height: inherit !important;
 }

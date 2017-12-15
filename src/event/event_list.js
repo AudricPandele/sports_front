@@ -90,6 +90,7 @@ class Eventlist extends Component {
                 date={item.date}
                 owner={item.owner.name}
                 owner_id={item.owner.id}
+                description={item.description}
                 key={'Eventitem'+item.id}
               />
             </div>

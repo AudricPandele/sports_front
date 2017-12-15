@@ -30,6 +30,7 @@ class Eventitem extends Component {
                    </div>
                    <div className="content">
                        <p>{this.props.place}</p>
+                       <p>{this.props.description}</p>
                    </div>
                </div>
            </div>

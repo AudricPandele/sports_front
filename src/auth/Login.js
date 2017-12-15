@@ -92,11 +92,11 @@ class Login extends Component {
     return (
       <div className="container">
         <form className="signUp">
-          <h3>Welcome Back !</h3>
+          <h3>Connexion</h3>
           <div className="col-auto">
             <div className="input-group mb-2 mb-sm-0">
               <div className="input-group-addon"><span className="little-at">@</span></div>
-              <input className="form-control" type="email" placeholder="Insert eMail" autoComplete='off' onChange={this.change} required name="email" />
+              <input className="form-control" type="email" placeholder="Adresse email" autoComplete='off' onChange={this.change} required name="email" />
             </div>
           </div>
           <br/>
@@ -104,13 +104,13 @@ class Login extends Component {
           <div className="col-auto">
             <div className="input-group mb-2 mb-sm-0">
               <div className="input-group-addon"><i className="little-icon material-icons">lock</i></div>
-              <input className="form-control" type="password" placeholder="Insert Password" onChange={this.change} required name="password" />
+              <input className="form-control" type="password" placeholder="Mot de passe" onChange={this.change} required name="password" />
             </div>
           </div>
           <br/>
 
           <div>{this.state.errorMessage}</div>
-          <button className="form-btn sx back" type="button" onClick={this.changeForm} >Retour</button>
+          <button className="form-btn sx back" type="button" onClick={this.changeForm} >Inscription</button>
           <button className="form-btn dx" type="button" onClick={this.login} >Connexion</button>
         </form>
       </div>
