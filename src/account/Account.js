@@ -12,6 +12,7 @@ class Account extends Component {
     this.state = {
       data: [],
       user_id : null,
+      followers : null
     }
   }
 
@@ -24,6 +25,7 @@ class Account extends Component {
     axios.put('http://localhost:1337/user/'+user_id, {
         gender: this.state.data.gender,
         birthday: this.state.data.birthday,
+        photo: this.state.data.photo
       },
       {
         crossdomain: true ,
@@ -57,6 +59,14 @@ class Account extends Component {
       }
     })
   }
+  handlePhotoChange = (e) => {
+    this.setState({
+      data:{
+        ...this.state.data,
+        photo: e.target.value
+      }
+    })
+  }
 
   getData = () => {
     const cookies = new Cookies();
@@ -82,8 +92,26 @@ class Account extends Component {
 
   componentDidMount() {
     const cookies = new Cookies();
-    this.setState({ user_id : cookies.get('sport_id') });
+    const user_id = cookies.get('sport_id')
+    const token = cookies.get('sport_token')
     this.getData()
+    axios.get('http://localhost:1337/user',
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
+    .then((response)=>{
+      let followers = 0
+      response.data.map((user)=>{
+        user.friends.map((friend)=>{
+          if(friend.id == user_id)
+            followers++
+        })
+      })
+      this.setState({followers : followers})
+    })
   }
 
   updateList = () => {
@@ -108,7 +136,7 @@ class Account extends Component {
                       {!this.state.data.friends ? (
                         <span>Vous ne suivez encore personne</span>
                       ) : (
-                        <span>{this.state.data.friends.length} followings - 0 followers</span>
+                        <span>{this.state.data.friends.length} followings - {this.state.followers} followers</span>
                       )}
                     </div>
                   </div><br/>
@@ -136,6 +164,12 @@ class Account extends Component {
                         <div className="input-group mb-2 mb-sm-0">
                           <div className="input-group-addon"><i className="little-icon material-icons">cake</i></div>
                           <input className="form-control" type="date" value={this.state.data.birthday} placeholder="Date de naissance" name="birthday" onChange={this.handleBirthdayChange}/>
+                        </div>
+                      </div>
+                      <div className="col-auto form-group">
+                        <div className="input-group mb-2 mb-sm-0">
+                          <div className="input-group-addon"><i className="little-icon material-icons">account_circle</i></div>
+                          <input className="form-control" type="url" value={this.state.data.photo} placeholder="Date de naissance" name="photo" onChange={this.handlePhotoChange}/>
                         </div>
                       </div>
                     </div>

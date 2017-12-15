@@ -44,7 +44,7 @@ class Menu extends Component {
               <Link to={"/event"} className={this.props.active === 'myEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Mes évenements</Link>
               <Link to={"/create_event"} className={this.props.active === 'createEvent' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Créer un évenement</Link>
               <Link to={"/account/"+user_id} className={this.props.active === 'account' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Mon compte</Link>
-              <Link to={"/logout"} className={this.props.active === 'logout' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Déconexion</Link>
+              <Link to={"/logout"} className={this.props.active === 'logout' ? 'nav-item nav-link active' : 'nav-item nav-link'}>Déconnexion</Link>
             </div>
           </div>
         </nav>
