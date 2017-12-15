@@ -102,13 +102,11 @@ class Eventlist extends Component {
              />
           </div>
         ) : (
+          <div>
+          <div className="col-sm-12 navbar navbar-light bg-light">
+            <Toggle onToggleChange={this.displayAppropriateEvents}/>
+          </div>
           <div className="col-md-12">
-            <div className="row">
-              <div className="col-sm-12">
-                <Toggle onToggleChange={this.displayAppropriateEvents}/>
-              </div>
-            </div>
-
             {this.state.data.map((item) => {
               return (
                 <div className="col-12 col-lg-4 mb-5" key={item.id}>
@@ -129,6 +127,7 @@ class Eventlist extends Component {
               </div>
             )})}
           </div>
+        </div>
         )
     );
   }

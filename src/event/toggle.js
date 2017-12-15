@@ -20,11 +20,11 @@ class Toggle extends Component {
 
   render() {
     return (
-      <label>
+      <label className='d-flex align-items-center'>
         <ToggleButton
           onChange={this.handleChange}
           icons={false} />
-          <span>Afficher tous les évenements</span>
+          <span className="ml-2">Afficher tous les évenements</span>
       </label>
     );
   }
