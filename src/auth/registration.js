@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Redirect } from 'react-router-dom';
 
+
 class Registration extends Component {
 
   constructor(){
@@ -15,6 +16,7 @@ class Registration extends Component {
       errorMessage: null,
       redirect: false,
       redirectLog : null,
+      photo : null,
     }
   }
 
@@ -24,6 +26,7 @@ class Registration extends Component {
   }
 
   register = () =>{
+    console.log(this.state.picture);
     if(this.state.lastname != null && this.state.firstname != null && this.state.password != null && this.state.email != null){
       if(this.testMail(this.state.email)){
         this.setState({errorMessage : null});
@@ -32,7 +35,8 @@ class Registration extends Component {
           lastname: this.state.lastname,
           name: this.state.lastname + ' '+ this.state.firstname,
           password: this.state.password,
-          email: this.state.email
+          email: this.state.email,
+          photo: this.state.photo
         })
         .then((response) => {
           console.log(response);
@@ -70,10 +74,16 @@ class Registration extends Component {
       case "password":
         this.setState({password: e.target.value})
         break;
+      case "photo":
+        this.setState({photo: e.target.value})
       default :
         break;
     }
 
+  }
+
+  onDrop = (pic) =>{
+    this.setState({picture : pic})
   }
 
   changeForm = () => {
@@ -130,6 +140,14 @@ class Registration extends Component {
             <div className="input-group mb-2 mb-sm-0">
               <div className="input-group-addon"><i className="little-icon material-icons">lock</i></div>
               <input className="form-control" type="password" placeholder="Password" required onChange={this.change} name="password"/>
+            </div>
+          </div>
+          <br/>
+
+          <div className="col-auto">
+            <div className="input-group mb-2 mb-sm-0">
+              <div className="input-group-addon"><i className="little-icon material-icons">account_circle</i></div>
+              <input className="form-control" type="url" placeholder="Photo de profil" required onChange={this.change} name="photo"/>
             </div>
           </div>
           <br/>
