@@ -5,13 +5,14 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import './styles/style.css';
 import ReactQueryParams from 'react-query-params';
+import { RingLoader } from 'react-spinners';
 
 class Eventlist extends Component {
 
   constructor(){
     super();
     this.state = {
-      data: [],
+      data: null,
       city : null
     }
   }
@@ -91,8 +92,16 @@ class Eventlist extends Component {
   }
 
   render() {
-    if(this.state.data){
       return (
+        !this.state.data ? (
+          <div className="center-div">
+            <p>Localisation ...</p>
+            <RingLoader
+              className="text-center"
+               color={'#2F5A75'}
+             />
+          </div>
+        ) : (
           <div className="col-md-12">
             <div className="row">
               <div className="col-sm-12">
@@ -100,33 +109,28 @@ class Eventlist extends Component {
               </div>
             </div>
 
-          {this.state.data.map((item) => {
-            return (
-              <div className="col-12 col-lg-4 mb-5" key={item.id}>
-              <Eventitem
-                name={item.name}
-                id={item.id}
-                sport={item.sport ? item.sport.name : ''}
-                picture={item.sport ? item.sport.picture : ''}
-                level={item.level ? item.level.value : ''}
-                place={item.place}
-                number_of_participants = {item.number_of_participants}
-                date={item.date}
-                owner={item.owner.name}
-                owner_id={item.owner.id}
-                description={item.description}
-                key={'Eventitem'+item.id}
-              />
-            </div>
-          )})}
+            {this.state.data.map((item) => {
+              return (
+                <div className="col-12 col-lg-4 mb-5" key={item.id}>
+                <Eventitem
+                  name={item.name}
+                  id={item.id}
+                  sport={item.sport ? item.sport.name : ''}
+                  picture={item.sport ? item.sport.picture : ''}
+                  level={item.level ? item.level.value : ''}
+                  place={item.place}
+                  number_of_participants = {item.number_of_participants}
+                  date={item.date}
+                  owner={item.owner.name}
+                  owner_id={item.owner.id}
+                  description={item.description}
+                  key={'Eventitem'+item.id}
+                />
+              </div>
+            )})}
           </div>
-      );
-    }
-    else{
-      return (
-        <div>Chargement ... </div>
-      );
-    }
+        )
+    );
   }
 }
 
