@@ -5,6 +5,7 @@ import Menu from './../home/menu.js';
 import { Redirect} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Place from './inputPlace.js';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 class Event extends Component {
     constructor() {
@@ -22,6 +23,7 @@ class Event extends Component {
             newSport: null,
             newLevel: null,
             redirect: null,
+            city: null,
         }
     }
 
@@ -87,7 +89,8 @@ class Event extends Component {
           owner: this.state.user_id,
           sport: this.state.newSport,
           level: this.state.newLevel,
-          status: 1
+          status: 1,
+          city: this.state.city
         },
         {
           crossdomain: true ,
@@ -138,6 +141,16 @@ class Event extends Component {
 
     onChangePlace = (e) => {
       this.setState({place: e})
+      geocodeByAddress(e)
+      .then((results) => {
+        results.map((item)=>{
+          item.address_components.map((info)=>{
+            if(info.types[0] === 'locality')
+              this.setState({city : info.long_name});
+          })
+        })
+      })
+      .catch(error => console.error(error))
     }
 
     render () {
