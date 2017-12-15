@@ -80,18 +80,18 @@ class Eventlist extends Component {
             return (
               <div className="col-12 col-lg-4 mb-5" key={item.id}>
               <Eventitem
-              name={item.name}
-              id={item.id}
-              sport={item.sport ? item.sport.name : ''}
-              picture={item.sport ? item.sport.picture : ''}
-              level={item.level ? item.level.value : ''}
-              place={item.place}
-              number_of_participants = {item.number_of_participants}
-              date={item.date}
-              owner={item.owner.name}
-              owner_id={item.owner.id}
-              key={'Eventitem'+item.id}
-            />
+                name={item.name}
+                id={item.id}
+                sport={item.sport ? item.sport.name : ''}
+                picture={item.sport ? item.sport.picture : ''}
+                level={item.level ? item.level.value : ''}
+                place={item.place}
+                number_of_participants = {item.number_of_participants}
+                date={item.date}
+                owner={item.owner.name}
+                owner_id={item.owner.id}
+                key={'Eventitem'+item.id}
+              />
             </div>
           )})}
           </div>
