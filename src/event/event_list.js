@@ -4,6 +4,7 @@ import Toggle from './toggle';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import './styles/style.css';
+import ReactQueryParams from 'react-query-params';
 
 class Eventlist extends Component {
 
@@ -11,11 +12,34 @@ class Eventlist extends Component {
     super();
     this.state = {
       data: [],
+      city : null
     }
   }
 
   componentDidMount() {
-    this.getInterests()
+    navigator.geolocation.getCurrentPosition((success)=>{
+      const latitude = success.coords.latitude
+      const longitude = success.coords.longitude
+      const key = 'AIzaSyDdfLDEUo2_Z6_UuZrVSuWKF-GsX93zyjs'
+      const latlng = `${latitude},${longitude}`
+
+      fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?key=${key}&latlng=${latlng}`)
+        .then((res) => res.json())
+        .then((json) => {
+          if (json.status !== 'OK') {
+            throw new Error(`Geocode error: ${json.status}`);
+          }
+          json.results[0].address_components.map((item)=>{
+            if(item.types[0] === 'locality')
+              this.setState({city : item.long_name})
+          })
+          this.getInterests()
+        })
+    },
+    (error)=>{
+      console.log(error);
+    })
   }
 
   getInterests = () => {
@@ -24,7 +48,7 @@ class Eventlist extends Component {
     const token = cookies.get('sport_token');
 
     axios.get(
-      'http://localhost:1337/user/'+user_id+'/interests',
+      'http://localhost:1337/user/'+user_id+'/interests/'+this.state.city,
       {
         crossdomain: true ,
         headers: {
