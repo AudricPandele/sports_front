@@ -76,14 +76,16 @@ class Eventdetail extends Component {
   checkParticipants = (data) => {
     let number_of_participants = 0
     let postule = false
+    if(this.state.owner.id == this.state.me)
+      postule = true
     data.map((participant)=>{
-      if(participant.status.id === '2')
+      if(participant.status.id == '2')
         number_of_participants++
-      if(participant.user.id === this.state.me)
+      if(participant.user.id == this.state.me)
         postule = true
     });
     this.setState({
-      isFull : number_of_participants > this.state.number_of_participants,
+      isFull : (number_of_participants - 1) > this.state.number_of_participants,
       postule : postule
     })
   }
