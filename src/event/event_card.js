@@ -11,6 +11,7 @@ class EventCard extends Component {
     super();
     this.state = {
       user: null,
+      actu: null,
     }
   }
 
@@ -39,6 +40,21 @@ class EventCard extends Component {
     .catch(function (error) {
       console.log(error);
     });
+  }
+
+  deleteEvent = (e) =>{
+    const cookies = new Cookies();
+    const token = cookies.get('sport_token');
+    axios.delete('http://localhost:1337/event/'+e.target.id,
+    {
+      crossdomain: true ,
+      headers: {
+         'Authorization': 'Bearer '+token
+      }
+    })
+    .then((data)=>{
+      this.props.onChangeStatus(true);
+    })
   }
 
   updateStatus = (value, id) =>{
@@ -114,7 +130,26 @@ class EventCard extends Component {
               ''
             )}
             <div className="card-body">
-              <a href="#" className="card-link text-danger">Annuler</a>
+              <button className="btn btn-danger" data-toggle="modal" data-target={"#confirmModal"+this.props.data.id}>
+                <i className="material-icons">delete_forever</i>
+              </button>
+
+              <div class="modal fade" id={"confirmModal"+this.props.data.id} tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Voulez-vous supprimer l'événement {this.props.data.name}?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                      <button id={this.props.data.id} type="button" class="btn btn-danger" onClick={this.deleteEvent}>Supprimer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </ul>
         </div>

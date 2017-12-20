@@ -146,7 +146,7 @@ class SportsList extends Component {
         <div className="row">
           <div className="col-sm-5 col-sm-offset-1">
             {this.state.sports.length === 0 ? (
-              <p>loading</p>
+              <p>Chargement</p>
             ) : (
               <Select
                 icon="directions_bike"
@@ -157,7 +157,7 @@ class SportsList extends Component {
           </div>
           <div className="col-sm-5">
             {this.state.levels.length === 0 ? (
-              <p>loading</p>
+              <p>Chargement</p>
             ) : (
               <Select
                 icon="swap_vert"
@@ -171,7 +171,7 @@ class SportsList extends Component {
         <button
           className="btn btn-primary"
           onClick={this.createNewList}>
-          Add sport
+          Ajouter un sport
         </button>
       </div>
     );

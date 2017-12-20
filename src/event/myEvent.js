@@ -16,6 +16,10 @@ class MyEvent extends Component {
   }
 
   componentDidMount(){
+    this.getUserInfo()
+  }
+
+  getUserInfo = () => {
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
@@ -37,13 +41,14 @@ class MyEvent extends Component {
   }
 
   ChangeStatus = (value) =>{
-    this.setState({actualise : this.state.actualise + 1});
+    this.getUserInfo()
   }
 
   render() {
     return (
       <div>
         <Menu active="myEvent"/>
+        <div className="row">
         { this.state.user ? (
           this.state.user.events.map((item)=>{
             return(
@@ -56,6 +61,7 @@ class MyEvent extends Component {
             <div> LOAD </div>
         )}
       </div>
+    </div>
     );
   }
 }
