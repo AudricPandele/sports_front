@@ -11,12 +11,35 @@ class MyEvent extends Component {
     super();
     this.state = {
       user: null,
-      actualise : null
+      actualise : null,
+      groups : null,
     }
   }
 
   componentDidMount(){
     this.getUserInfo()
+    this.getEventParticipate()
+  }
+
+  getEventParticipate = () =>{
+    console.log('ok');
+      const cookies = new Cookies();
+      const id = cookies.get('sport_id');
+      const token = cookies.get('sport_token');
+
+      axios.get('http://localhost:1337/group/user/'+id,
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
+      })
+      .then((response)=>{
+        this.setState({groups : response.data})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   getUserInfo = () => {
@@ -54,12 +77,28 @@ class MyEvent extends Component {
             return(
               <EventCard data={item}
                 onChangeStatus={this.ChangeStatus}
+                owner="true"
               />
             );
           })
         ):(
-            <div> LOAD </div>
+            <div> Chargement </div>
         )}
+
+        {
+          this.state.groups ? (
+            this.state.groups.map((item)=>{
+              return(
+                <EventCard data={item.event}
+                  onChangeStatus={this.ChangeStatus}
+                  owner="false"
+                />
+              )
+            })
+          ):(
+            null
+          )
+        }
       </div>
     </div>
     );
