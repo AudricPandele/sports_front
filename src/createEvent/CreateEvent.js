@@ -24,6 +24,8 @@ class Event extends Component {
             newLevel: null,
             redirect: null,
             city: null,
+            hour: null,
+            minutes: null,
         }
     }
 
@@ -86,11 +88,13 @@ class Event extends Component {
           number_of_participants: this.state.number_of_participants,
           place: this.state.place,
           date: this.state.date,
+          hour: this.state.hour,
+          minutes: this.state.minutes,
           owner: this.state.user_id,
           sport: this.state.newSport,
           level: this.state.newLevel,
           status: 1,
-          city: this.state.city
+          city: this.state.city,
         },
         {
           crossdomain: true ,
@@ -99,7 +103,6 @@ class Event extends Component {
           }
         })
         .then((response) => {
-          console.log(response);
           this.setState({redirect : true});
         })
         .catch(function (error) {
@@ -134,6 +137,12 @@ class Event extends Component {
             break;
           case "date":
             this.setState({date: e.target.value})
+            break;
+          case "hour":
+            this.setState({hour: e.target.value})
+            break;
+          case "minutes":
+            this.setState({minutes: e.target.value})
             break;
           default: break;
         }
@@ -223,6 +232,17 @@ class Event extends Component {
                           <div className="input-group mb-2 mb-sm-0">
                             <div className="input-group-addon"><i className="little-icon material-icons">insert_invitation</i></div>
                             <input type="date" className="form-control" id="inputDate" placeholder="Date" name="date" onChange={this.change}/>
+                          </div>
+                        </div>
+                        <br/>
+
+                        <div className="col-auto">
+                          <div className="input-group mb-2 mb-sm-0">
+                            <div className="input-group-addon"><i className="little-icon material-icons">insert_invitation</i></div>
+                            <input type="number" className="form-control" id="inputHour" placeholder="Heure" name="hour" onChange={this.change}/>
+
+                            <div className="input-group-addon"><i className="little-icon material-icons">insert_invitation</i></div>
+                            <input type="number" className="form-control" id="inputMinutes" placeholder="Minutes" name="minutes" onChange={this.change}/>
                           </div>
                         </div>
                         <br/>
