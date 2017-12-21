@@ -26,7 +26,7 @@ class Eventitem extends Component {
                        <span className="meta-data">Par <Link to={"../user/"+this.props.owner_id}>{this.props.owner}</Link> le &nbsp;
                        <Moment format="DD/MM/YYYY">
                            {this.props.date}
-                       </Moment></span>
+                       </Moment> à {this.props.hour+'h'+this.props.minutes}</span>
                    </div>
                    <div className="content">
                        <p>{this.props.place}</p>

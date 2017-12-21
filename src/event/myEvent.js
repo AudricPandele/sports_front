@@ -11,11 +11,38 @@ class MyEvent extends Component {
     super();
     this.state = {
       user: null,
-      actualise : null
+      actualise : null,
+      groups : null,
     }
   }
 
   componentDidMount(){
+    this.getUserInfo()
+    this.getEventParticipate()
+  }
+
+  getEventParticipate = () =>{
+    console.log('ok');
+      const cookies = new Cookies();
+      const id = cookies.get('sport_id');
+      const token = cookies.get('sport_token');
+
+      axios.get('http://localhost:1337/group/user/'+id,
+      {
+        crossdomain: true ,
+        headers: {
+           'Authorization': 'Bearer '+token
+        }
+      })
+      .then((response)=>{
+        this.setState({groups : response.data})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  getUserInfo = () => {
     const cookies = new Cookies();
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
@@ -37,30 +64,43 @@ class MyEvent extends Component {
   }
 
   ChangeStatus = (value) =>{
-    this.setState({actualise : this.state.actualise + 1});
+    this.getUserInfo()
   }
 
   render() {
     return (
       <div>
         <Menu active="myEvent"/>
-
-        <div className="col-md-12">
+        <div className="row">
         { this.state.user ? (
           this.state.user.events.map((item)=>{
             return(
-              <div className="col-12 col-lg-4 mb-5" key={item.id}>
-                <EventCard data={item}
-                  onChangeStatus={this.ChangeStatus}
-                />
-              </div>
+              <EventCard data={item}
+                onChangeStatus={this.ChangeStatus}
+                owner="true"
+              />
             );
           })
         ):(
-            <div> LOAD </div>
+            <div> Chargement </div>
         )}
-        </div>
+
+        {
+          this.state.groups ? (
+            this.state.groups.map((item)=>{
+              return(
+                <EventCard data={item.event}
+                  onChangeStatus={this.ChangeStatus}
+                  owner="false"
+                />
+              )
+            })
+          ):(
+            null
+          )
+        }
       </div>
+    </div>
     );
   }
 }
