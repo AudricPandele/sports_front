@@ -94,6 +94,8 @@ class EventCard extends Component {
                 owner={this.props.data.owner.name}
                 owner_id={this.props.data.owner.id}
                 key={'Eventitem'+this.props.data.id}
+                hour={this.props.data.hour}
+                minutes={this.props.data.minutes}
               />
           {
             this.props.owner === "true" ? (

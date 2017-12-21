@@ -23,7 +23,9 @@ class Eventdetail extends Component {
       picture: null,
       isFull : false,
       postule : null,
-      me : null
+      me : null,
+      hour:null,
+      minutes:null,
     }
   }
 
@@ -63,7 +65,10 @@ class Eventdetail extends Component {
         owner : response.data.owner,
         date : response.data.date,
         picture: response.data.sport.picture,
-        me: me
+        me: me,
+        hour:response.data.hour,
+        minutes:response.data.minutes
+
 
       });
       this.checkParticipants(response.data.participants)
@@ -132,6 +137,8 @@ class Eventdetail extends Component {
             description={this.state.description}
             owner={this.state.owner.name}
             owner_id={this.state.owner.id}
+            hour={this.state.hour}
+            minutes={this.state.minutes}
           />
         ):(null)}
         {

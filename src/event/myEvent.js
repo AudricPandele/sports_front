@@ -75,6 +75,7 @@ class MyEvent extends Component {
           <div className="col-sm-12">
         { this.state.user ? (
           this.state.user.events.map((item)=>{
+            console.log(item);
             return(
               <EventCard data={item}
                 onChangeStatus={this.ChangeStatus}
