@@ -11,13 +11,13 @@ class AddSport extends Component {
           <div className="col-sm-6 col-sm-offset-3">
             <div className="card text-center">
               <div className="card-header">
-                Add sport
+                Ajouter sport
               </div>
               <div className="card-block">
                 <div className="row">
                   <div className="col-sm-12" style={{marginBottom: '10px'}}>
                     <h3 className="card-title">My sports</h3><br/>
-                    
+
                   </div>
                 </div>
               </div>

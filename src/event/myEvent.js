@@ -20,7 +20,7 @@ class MyEvent extends Component {
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/user/'+id,
+    axios.get('http://31.36.123.215:1337/user/'+id,
     {
       crossdomain: true ,
       headers: {
@@ -44,17 +44,22 @@ class MyEvent extends Component {
     return (
       <div>
         <Menu active="myEvent"/>
+
+        <div className="col-md-12">
         { this.state.user ? (
           this.state.user.events.map((item)=>{
             return(
-              <EventCard data={item}
-                onChangeStatus={this.ChangeStatus}
-              />
+              <div className="col-12 col-lg-4 mb-5" key={item.id}>
+                <EventCard data={item}
+                  onChangeStatus={this.ChangeStatus}
+                />
+              </div>
             );
           })
         ):(
             <div> LOAD </div>
         )}
+        </div>
       </div>
     );
   }

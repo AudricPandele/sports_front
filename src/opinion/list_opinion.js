@@ -16,7 +16,7 @@ class ListOpinion extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/opinion/'+this.props.recipient,
+    axios.get('http://31.36.123.215:1337/opinion/'+this.props.recipient,
     {
       crossdomain: true ,
       headers: {

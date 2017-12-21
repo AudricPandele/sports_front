@@ -22,7 +22,7 @@ class Account extends Component {
     const user_id = cookies.get('sport_id');
 
 
-    axios.put('http://localhost:1337/user/'+user_id, {
+    axios.put('http://31.36.123.215:1337/user/'+user_id, {
         gender: this.state.data.gender,
         birthday: this.state.data.birthday,
         photo: this.state.data.photo
@@ -73,7 +73,7 @@ class Account extends Component {
     const user_id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/user/'+user_id,
+    axios.get('http://31.36.123.215:1337/user/'+user_id,
     {
       crossdomain: true ,
       headers: {
@@ -95,7 +95,7 @@ class Account extends Component {
     const user_id = cookies.get('sport_id')
     const token = cookies.get('sport_token')
     this.getData()
-    axios.get('http://localhost:1337/user',
+    axios.get('http://31.36.123.215:1337/user',
     {
       crossdomain: true ,
       headers: {

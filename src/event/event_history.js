@@ -24,7 +24,7 @@ class EventHistory extends Component {
       token : token
     })
 
-    axios.get('http://localhost:1337/user/'+this.props.user,
+    axios.get('http://31.36.123.215:1337/user/'+this.props.user,
     {
       crossdomain: true ,
       headers: {
@@ -41,7 +41,7 @@ class EventHistory extends Component {
   }
 
   addFriend = () =>{
-    axios.post('http://localhost:1337/user/'+this.state.me+'/friends/',{
+    axios.post('http://31.36.123.215:1337/user/'+this.state.me+'/friends/',{
       id : this.props.user,
     },
     {
@@ -59,7 +59,7 @@ class EventHistory extends Component {
   }
 
   checkFriend = () =>{
-    axios.get('http://localhost:1337/user/'+this.state.me, {
+    axios.get('http://31.36.123.215:1337/user/'+this.state.me, {
       crossdomain: true ,
       headers: {
          'Authorization': 'Bearer '+this.state.token

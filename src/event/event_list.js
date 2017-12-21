@@ -49,7 +49,7 @@ class Eventlist extends Component {
     const token = cookies.get('sport_token');
 
     axios.get(
-      'http://localhost:1337/user/'+user_id+'/interests/'+this.state.city,
+      'http://31.36.123.215:1337/user/'+user_id+'/interests/'+this.state.city,
       {
         crossdomain: true ,
         headers: {
@@ -68,7 +68,7 @@ class Eventlist extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/event',
+    axios.get('http://31.36.123.215:1337/event',
     {
       crossdomain: true ,
       headers: {

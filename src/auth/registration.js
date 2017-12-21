@@ -30,7 +30,7 @@ class Registration extends Component {
     if(this.state.lastname != null && this.state.firstname != null && this.state.password != null && this.state.email != null){
       if(this.testMail(this.state.email)){
         this.setState({errorMessage : null});
-        axios.post('http://localhost:1337/auth/signup', {
+        axios.post('http://31.36.123.215:1337/auth/signup', {
           firstname: this.state.firstname,
           lastname: this.state.lastname,
           name: this.state.lastname + ' '+ this.state.firstname,

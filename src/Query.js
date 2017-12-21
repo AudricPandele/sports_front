@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default class Query {
   static get = (key) => {
-    axios.get('http://localhost:1337/'+key)
+    axios.get('http://31.36.123.215:1337/'+key)
     .then((response) => {
       return response.data
     })
@@ -12,7 +12,7 @@ export default class Query {
   }
 
   static getUser = (key) => {
-    axios.get('http://localhost:1337/user/'+key)
+    axios.get('http://31.36.123.215:1337/user/'+key)
     .then((response) => {
       return response.data.user
     })

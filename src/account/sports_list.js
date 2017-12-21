@@ -18,7 +18,7 @@ class SportsList extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/sport',
+    axios.get('http://31.36.123.215:1337/sport',
     {
       crossdomain: true ,
       headers: {
@@ -34,7 +34,7 @@ class SportsList extends Component {
       console.log(error);
     });
 
-    axios.get('http://localhost:1337/level',
+    axios.get('http://31.36.123.215:1337/level',
     {
       crossdomain: true ,
       headers: {
@@ -55,7 +55,7 @@ class SportsList extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-    axios.delete('http://localhost:1337/sportlist/'+id,
+    axios.delete('http://31.36.123.215:1337/sportlist/'+id,
     {
       crossdomain: true ,
       headers: {
@@ -88,7 +88,7 @@ class SportsList extends Component {
       const user_id = cookies.get('sport_id');
       const token = cookies.get('sport_token');
 
-      axios.post('http://localhost:1337/user/'+user_id+'/sportlist', {
+      axios.post('http://31.36.123.215:1337/user/'+user_id+'/sportlist', {
         sport: this.state.newSport,
         level: this.state.newLevel
       },
@@ -171,7 +171,7 @@ class SportsList extends Component {
         <button
           className="btn btn-primary"
           onClick={this.createNewList}>
-          Add sport
+          Ajouter sport
         </button>
       </div>
     );

@@ -35,7 +35,7 @@ class Eventdetail extends Component {
     const token = cookies.get('sport_token');
     const me = cookies.get('sport_id');
 
-    axios.get('http://localhost:1337/event/'+this.props.match.params.id,
+    axios.get('http://31.36.123.215:1337/event/'+this.props.match.params.id,
     {
       crossdomain: true ,
       headers: {
@@ -95,7 +95,7 @@ class Eventdetail extends Component {
     const id = cookies.get('sport_id');
     const token = cookies.get('sport_token');
 
-    axios.post('http://localhost:1337/group',{
+    axios.post('http://31.36.123.215:1337/group',{
       event : this.state.id,
       user : id,
       status : 1

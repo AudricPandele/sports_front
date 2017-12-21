@@ -26,7 +26,7 @@ class EventCard extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-    axios.get('http://localhost:1337/event/'+this.props.data.id,
+    axios.get('http://31.36.123.215:1337/event/'+this.props.data.id,
     {
       crossdomain: true ,
       headers: {
@@ -45,7 +45,7 @@ class EventCard extends Component {
     const cookies = new Cookies();
     const token = cookies.get('sport_token');
 
-     axios.put('http://localhost:1337/group/'+id,{
+     axios.put('http://31.36.123.215:1337/group/'+id,{
        status : value
      },
      {
@@ -65,7 +65,7 @@ class EventCard extends Component {
   render() {
     if(this.props.data){
       return(
-        <div className="col-4">
+        <div>
           <Eventitem
                 name={this.props.data.name}
                 id={this.props.data.id}

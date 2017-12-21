@@ -31,7 +31,7 @@ class Event extends Component {
       const cookies = new Cookies();
       const token = cookies.get('sport_token');
 
-      axios.get('http://localhost:1337/sport',
+      axios.get('http://31.36.123.215:1337/sport',
       {
         crossdomain: true ,
         headers: {
@@ -52,7 +52,7 @@ class Event extends Component {
       const cookies = new Cookies();
       const token = cookies.get('sport_token');
 
-      axios.get('http://localhost:1337/level',
+      axios.get('http://31.36.123.215:1337/level',
       {
         crossdomain: true ,
         headers: {
@@ -80,7 +80,7 @@ class Event extends Component {
       const cookies = new Cookies();
       const token = cookies.get('sport_token');
 
-      axios.post('http://localhost:1337/event', {
+      axios.post('http://31.36.123.215:1337/event', {
           name: this.state.name,
           description: this.state.description,
           number_of_participants: this.state.number_of_participants,

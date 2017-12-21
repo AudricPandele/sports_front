@@ -19,7 +19,7 @@ class Opinion extends Component {
     const token = cookies.get('sport_token');
 
     if(this.state.comment && this.state.comment != "" && this.state.transmitter && this.state.recipient){
-      axios.post('http://localhost:1337/opinion', {
+      axios.post('http://31.36.123.215:1337/opinion', {
         recipient : this.state.recipient,
         transmitter : this.state.transmitter,
         message : this.state.comment,

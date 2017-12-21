@@ -41,7 +41,7 @@ class Login extends Component {
   login = () =>{
     if(this.state.email != null && this.state.password != null){
         if(this.testMail(this.state.email)){
-          axios.post('http://localhost:1337/auth/signin', {
+          axios.post('http://31.36.123.215:1337/auth/signin', {
             email : this.state.email,
             password : this.state.password
           })
