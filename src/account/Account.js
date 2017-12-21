@@ -169,7 +169,7 @@ class Account extends Component {
                       <div className="col-auto form-group">
                         <div className="input-group mb-2 mb-sm-0">
                           <div className="input-group-addon"><i className="little-icon material-icons">account_circle</i></div>
-                          <input className="form-control" type="url" value={this.state.data.photo} placeholder="Date de naissance" name="photo" onChange={this.handlePhotoChange}/>
+                          <input className="form-control" type="url" value={this.state.data.photo} placeholder="Photo de profil" name="photo" onChange={this.handlePhotoChange}/>
                         </div>
                       </div>
                     </div>
