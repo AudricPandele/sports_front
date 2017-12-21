@@ -81,7 +81,7 @@ class EventCard extends Component {
   render() {
     if(this.props.data){
       return(
-        <div>
+        <div className="col-sm-4">
           <Eventitem
                 name={this.props.data.name}
                 id={this.props.data.id}

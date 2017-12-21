@@ -72,6 +72,7 @@ class MyEvent extends Component {
       <div>
         <Menu active="myEvent"/>
         <div className="row">
+          <div className="col-sm-12">
         { this.state.user ? (
           this.state.user.events.map((item)=>{
             return(
@@ -99,6 +100,7 @@ class MyEvent extends Component {
             null
           )
         }
+        </div>
       </div>
     </div>
     );
